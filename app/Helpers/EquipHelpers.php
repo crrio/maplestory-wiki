@@ -46,9 +46,9 @@ if(!function_exists('ParseMapleString')) {
         $maple = preg_replace('/#([^#]+)#(k)?/i', '<span class="bold text-warning">$1</span>', $maple);
 
         // Replace newlines
-        $maple = preg_replace('/\\n\\n/i', '<br>', $maple); // We don't want the description to be enormous
-        $maple = preg_replace('/\\r\\n/i', '<br>', $maple); // We don't want the description to be enormous
-        $maple = preg_replace('/\\n/i', '<br>', $maple);
+        $maple = preg_replace('/\\\\n\\\\n/i', '<br>', $maple); // We don't want the description to be enormous
+        $maple = preg_replace('/\\\\r\\\\n/i', '<br>', $maple); // We don't want the description to be enormous
+        $maple = preg_replace('/\\\\n/i', '<br>', $maple);
 
         // Now we need to account for #'s that DON'T end...
         $maple = preg_replace('/#b([^#]+)/i', '<span class="bold desc-b">$1</span>', $maple);
