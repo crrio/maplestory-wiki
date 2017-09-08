@@ -22,7 +22,10 @@
 
             <div class='preview'>
                 <div class='previewControls'>
-                    <img src="https://labs.maplestory.io/api/gms/latest/character/{{GetRandomSkin()}}/{{$item->id}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/character/{{GetRandomSkin()}}/{{$item->id}}" />
+                @php
+                    $skinId = GetRandomSkin();
+                @endphp
+                    <img src="https://labs.maplestory.io/api/gms/latest/character/{{$skinId}}/{{$item->id}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/character/{{$skinId}}/{{$item->id}}" />
                     {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                     <div class='previewController'>
                     <select class='framebookSelector'>
