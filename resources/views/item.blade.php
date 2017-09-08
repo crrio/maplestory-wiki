@@ -10,7 +10,7 @@
             <span class="name">{{ $item->description->name }}</span>
             <span class="category">{{ $item->typeInfo->overallCategory }} - {{ $item->typeInfo->category }} {{ $item->typeInfo->subCategory }}</span>
 @isset($item->description->description)
-            <span>{{ ParseMapleString($item->description->description) }}</span>
+            <span>{!! ParseMapleString($item->description->description) !!}</span>
 @endisset
         </div>
     </header>
