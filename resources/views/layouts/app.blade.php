@@ -9,7 +9,7 @@
 
         <script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
@@ -17,14 +17,35 @@
                 background-color: #e2e1e0;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
-                font-weight: 100;
+                font-weight: 400;
                 height: 100vh;
+            }
+
+            html {
                 margin: 0;
             }
 
-            body {
+            * {
+                box-sizing: border-box;
+            }
+
+            a {
+                text-decoration: none;
+                color: #007fff;
+                text-shadow: 0px 0px 0px #007fff;
+                font-weight: 400;
+            }
+
+            span {
+                font-weight: 100;
+                text-shadow: 0px 0px 0px #000;
+            }
+
+            .content {
                 display: flex;
                 flex-direction: column;
+                max-width: 800px;
+                margin: 0 auto;
             }
 
             .full-height {
@@ -47,10 +68,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 84px;
             }
@@ -69,44 +86,74 @@
                 margin-bottom: 30px;
             }
 
-            .card {
-                background: #fff;
-                border-radius: 2px;
-                display: inline-block;
-                margin: 1rem;
-                position: relative;
-                min-width: 300px;
-                float: left;
+            section {
+                margin: 16px 0 8px 0;
             }
 
-            .card-1 {
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            header {
+                margin: 0 0 8px 0;
             }
 
-            .card-1:hover {
-                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            section .title, header .title {
+                font-size: 24px;
             }
 
-            .card-2 {
-                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            .disclaimer {
+                text-align: center;
+                margin: 16px 0 32px 0;
             }
 
-            .card-3 {
-                box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            .bold {
+                font-weight: 600;
+                text-shadow: none;
             }
 
-            .card-4 {
-                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            .desc-b {
+                color: #5699af;
+            }
+            .desc-c {
+                color: darkorange;
+            }
+            .desc-d {
+                color: purple;
+            }
+            .desc-e {
+                font-weight: bold;
+            }
+            .desc-r {
+                color: red; /* Used in quest dialogs and some items with warnings / dangerous */
+            }
+            .desc-g {
+                color: green;
+            }
+            .desc-k {
+                color: black; /* Nexon'd tag, but still need to add it so it's replaced. Used in some custom dialogs */
             }
 
-            .card-5 {
-                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            .container {
+                min-height: 100px;
+                margin-bottom: 16px;
             }
-
         </style>
     </head>
     <body>
-        @yield('content')
+        <div class='container'>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- maplestory.wiki -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="{{getenv('AD_CLIENT')}}"
+                data-ad-slot="{{getenv('AD_SLOT')}}"
+                data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class='content'>
+            @yield('content')
+        </div>
+        <p class='disclaimer'>
+            All images and content relating to MapleStory are copyright Nexon, we provide this site as an educational tool for MapleStory's content.
+        </p>
     </body>
 </html>

@@ -37,3 +37,23 @@ if (!function_exists('GetRandomSkin')) {
         return $skins[rand(0, count($skins)-1)];
     }
 }
+
+if(!function_exists('ParseMapleString')) {
+    function ParseMapleString($maple) {
+        $maple = preg_replace('/#b([^#]+)#(k)?/i', '<span class="bold desc-b">$1</span>', $maple);
+        $maple = preg_replace('/#c([^#]+)#(k)?/i', '<span class="bold desc-c">$1</span>', $maple);
+        $maple = preg_replace('/#e([^#]+)#(k)?/i', '<span class="bold desc-e">$1</span>', $maple);
+        $maple = preg_replace('/#([^#]+)#(k)?/i', '<span class="bold text-warning">$1</span>', $maple);
+
+        // Replace newlines
+        $maple = preg_replace('/\\n\\n/i', '<br>', $maple); // We don't want the description to be enormous
+        $maple = preg_replace('/\\n/i', '<br>', $maple);
+
+        // Now we need to account for #'s that DON'T end...
+        $maple = preg_replace('/#b([^#]+)/i', '<span class="bold desc-b">$1</span>', $maple);
+        $maple = preg_replace('/#c([^#]+)/i', '<span class="bold desc-c">$1</span>', $maple);
+        $maple = preg_replace('/#e([^#]+)/i', '<span class="bold desc-e">$1</span>', $maple);
+        $maple = preg_replace('/#([^#]+)/i', '<span class="bold text-warning">$1</span>', $maple);
+        return $maple;
+    }
+}
