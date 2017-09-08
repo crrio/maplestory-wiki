@@ -134,6 +134,14 @@
                 min-height: 100px;
                 margin-bottom: 16px;
             }
+
+            .text-success {
+                color: #27c24c;
+            }
+
+            .text-danger {
+                color: #f05050;
+            }
         </style>
     </head>
     <body>
