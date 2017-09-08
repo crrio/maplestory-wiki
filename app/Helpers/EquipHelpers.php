@@ -55,7 +55,7 @@ if(!function_exists('ParseMapleString')) {
         $maple = preg_replace('/#e([^#]+)/i', '<span class="bold desc-e">$1</span>', $maple);
         $maple = preg_replace('/#([^#]+)/i', '<span class="bold text-warning">$1</span>', $maple);
 
-        $maple = preg_replace('/(No chance of Item being destroyed on failure.)/i', '<span class="text-success">$1</span>', $maple)
+        $maple = preg_replace('/(No chance of Item being destroyed on failure.)/i', '<span class="text-success">$1</span>', $maple);
         $maple = preg_replace('/(The item is destroyed upon failure.)/i', '<span class="text-danger">$1</span>', $maple);
 
         return $maple;
