@@ -16,7 +16,7 @@
 
 <div>
     <section>
-        <div class='title'>Info</div>
+        <b class='title'>Info</b>
         <table>
         @if(!$map->isTown)
             <tr><td colspan='2'><a href='/map/{{$map->returnMap}}'>Returns to {{$map->returnMapName->name}} ({{$map->returnMapName->streetName}})</a></td></tr>

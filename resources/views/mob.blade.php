@@ -13,7 +13,7 @@
 
 <div>
     <section>
-        <div class='title'>Info</div>
+        <b class='title'>Info</b>
         <table>
     @isset($mob->meta->isBodyAttack)
         <tr><td>Can physical attack you</td><td>{{$mob->meta->isBodyAttack == 1 ? 'True' : 'False'}}</td></tr>
@@ -165,7 +165,7 @@
     </section>
 
     <section class='preview'>
-        <div class='title'><b>Preview</b></div>
+        <b class='title'>Preview</b>
 
         <div>
             <div class='previewControls'>
@@ -194,7 +194,7 @@
 
     @if(count($mob->foundAt) > 0)
     <section class='foundAt'>
-        <div class='title'>Found at</div>
+        <b class='title'>Found at</b>
         <ul>
         @foreach($mob->foundAt as $mapEntry)
             <li><a href='/map/{{$mapEntry->id}}'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a></li>

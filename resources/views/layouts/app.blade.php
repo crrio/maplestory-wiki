@@ -15,7 +15,7 @@
         <style>
             html, body {
                 background-color: #e2e1e0;
-                color: #636b6f;
+                color: #333;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 400;
                 height: 100vh;
@@ -39,13 +39,6 @@
             span {
                 font-weight: 100;
                 text-shadow: 0px 0px 0px #000;
-            }
-
-            .content {
-                display: flex;
-                flex-direction: column;
-                max-width: 800px;
-                margin: 0 auto;
             }
 
             .full-height {
@@ -141,6 +134,71 @@
 
             .text-danger {
                 color: #f05050;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                max-width: 1084px;
+                margin: 0 auto;
+                position: relative;
+            }
+
+            .content, .content:after {
+                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bbaa88+0,ccbbaa+100 */
+                background: #bbaa88; /* Old browsers */
+                background: -moz-linear-gradient(-45deg, #bbaa88 0%, #ccbbaa 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(-45deg, #bbaa88 0%,#ccbbaa 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(135deg, #bbaa88 0%,#ccbbaa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bbaa88', endColorstr='#ccbbaa',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+                padding: 30px;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .content:after {
+                position: absolute;
+                top: 8px;
+                bottom: 8px;
+                left: 8px;
+                right: 8px;
+                content: ' ';
+                display: block;
+                z-index: 0;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 1);
+                border-radius: 15px;
+            }
+
+            .content > * {
+                z-index: 3;
+                position: relative;
+            }
+
+            b {
+                text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+                color: #ffffff;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            b.title {
+                width: 100%;
+                display: block;
+            }
+
+            .content:before {
+                content: ' ';
+                display: block;
+                position: absolute;
+                top: 0;
+                width: 400px;
+                background: rgba(0,0,0, 0.05);
+                height: 150px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-70%);
+                z-index: 2;
+                border-radius: 100%;
             }
         </style>
     </head>

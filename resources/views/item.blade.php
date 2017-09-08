@@ -18,7 +18,7 @@
     <div class='itemData'>
         @isset($item->metaInfo->equip)
         <section class="equipImagesContainer">
-            <div class='title'><b>Preview</b></div>
+            <b class='title'>Preview</b>
 
             <div class='preview'>
                 <div class='previewControls'>
