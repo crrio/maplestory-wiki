@@ -169,7 +169,7 @@
 
         <div>
             <div class='previewControls'>
-                <img src="http://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="http://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render" />
+                <img src="https://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render" />
                 {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                 <div class='previewController'>
                 <select class='framebookSelector'>
