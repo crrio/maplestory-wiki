@@ -200,7 +200,84 @@
                 z-index: 2;
                 border-radius: 100%;
             }
+
+            select {
+                border: 0px none transparent;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                box-shadow: inset 0 0 1px rgba(85, 119, 136, 1);
+                padding: 5px 25px 5px 5px;
+            }
+
+            select::-ms-expand {
+                display: none;
+            }
+
+            select option{
+                color: black;
+            }
+
+            select[disabled] + i, select[disabled] {
+                color: #567;
+                text-shadow: none;
+            }
+
+            select + i.fa {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                color: #abc;
+                text-shadow: 0 -1px 1px #234;
+                pointer-events: none;
+                font-family: "FontAwesome";
+                text-rendering: auto;
+                font-style: normal;
+                width: 20px;
+                text-align: center;
+                border-left: 1px solid #111;
+                vertical-align: middle;
+                display: block;
+                line-height: 30px;
+            }
+
+            select:not([disabled]):hover + i, select:not([disabled]):hover, select:not([disabled]):focus + i, select:not([disabled]):focus {
+                color: #FFF;
+                text-shadow: 0 0 5px #777;
+            }
+
+            label {
+                background: #446677;
+                background: -moz-linear-gradient(top, #446677 0%, #223344 100%);
+                background: -webkit-linear-gradient(top, #446677 0%,#223344 100%);
+                background: linear-gradient(to bottom, #446677 0%,#223344 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#446677', endColorstr='#223344',GradientType=0 );
+                padding: 0;
+                height: 32px;
+                border-radius: 3px;
+                overflow: hidden;
+                position: relative;
+                border: 1px solid #111;
+                box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+            }
+
+            label select {
+                background: transparent;
+                margin: 0;
+                min-width: 100px;
+                line-height: 20px;
+            }
+
+            label select:focus {
+                outline: none;
+            }
+
+            label + label {
+                margin-left: 8px;
+            }
         </style>
+        <script src="https://use.fontawesome.com/593d9f61d0.js"></script>
     </head>
     <body>
         <div class='container'>

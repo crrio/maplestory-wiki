@@ -28,41 +28,47 @@
                     <img src="https://labs.maplestory.io/api/gms/latest/character/{{$skinId}}/{{$item->id}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/character/{{$skinId}}/{{$item->id}}" />
                     {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                     <div class='previewController'>
-                    <select class='framebookSelector'>
-                    @foreach($item->frameBooks as $animation => $book)
-                        <option value='{{$animation}}'>{{$animation}}</option>
-                    @endforeach
-                    </select>
+                        <label class='framebookSelector'>
+                            <select>
+                            @foreach($item->frameBooks as $animation => $book)
+                                <option value='{{$animation}}'>{{$animation}}</option>
+                            @endforeach
+                            </select>
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </label>
                     </div>
                 </div>
 
                 @foreach($item->frameBooks as $animation => $book)
                     <div class='framebook' id='{{$animation}}' style='display: none;'>
-                        <select class='frameSelector' style='display: none;'>
-                            @foreach($book->frames as $frameNumber => $frame)
-                                <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
-                            @endforeach
-                        </select>
-                            @foreach($book->frames as $frameNumber => $frame)
-                            <div class='frame frame-{{$frameNumber}}' style='display: none;'>
-                                @foreach($frame->effects as $effectName => $effectSegment)
-                                @isset($effectSegment->image)
-                                    <div>
-                                        <span>{{$effectName}}</span>
-                                        <img src='data:image/png;base64,{{$effectSegment->image}}' />
-                                        <span>Origin</span>
-                                        <span>{{$effectSegment->originOrZero->x}}, {{$effectSegment->originOrZero->y}}</span>
-                                        <span>Map Offsets</span>
-                                        <table>
-                                            @foreach($effectSegment->mapOffset as $mapFrom => $mapOffset)
-                                                <tr><td>{{$mapFrom}}</td><td>{{$mapOffset->x}}, {{$mapOffset->y}}</td></tr>
-                                            @endforeach
-                                        </table>
-                                    </div>
-                                @endisset
+                        <label class='frameSelector' style='display: none;'>
+                            <select>
+                                @foreach($book->frames as $frameNumber => $frame)
+                                    <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
                                 @endforeach
-                            </div>
+                            </select>
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </label>
+                        @foreach($book->frames as $frameNumber => $frame)
+                        <div class='frame frame-{{$frameNumber}}' style='display: none;'>
+                            @foreach($frame->effects as $effectName => $effectSegment)
+                            @isset($effectSegment->image)
+                                <div>
+                                    <span>{{$effectName}}</span>
+                                    <img src='data:image/png;base64,{{$effectSegment->image}}' />
+                                    <span>Origin</span>
+                                    <span>{{$effectSegment->originOrZero->x}}, {{$effectSegment->originOrZero->y}}</span>
+                                    <span>Map Offsets</span>
+                                    <table>
+                                        @foreach($effectSegment->mapOffset as $mapFrom => $mapOffset)
+                                            <tr><td>{{$mapFrom}}</td><td>{{$mapOffset->x}}, {{$mapOffset->y}}</td></tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            @endisset
                             @endforeach
+                        </div>
+                        @endforeach
                     </div>
                 @endforeach
             </div>
@@ -123,10 +129,10 @@
     })
 
     function copyAndShowFrameSelector($frameSelector) {
-        $frameSelector.show().change(function(){
+        $frameSelector.show().find('select').change(function(){
             $('.frame').hide()
             $('.frame-' + $(this).val()).show()
-            var frameBook = $('.framebookSelector').val()
+            var frameBook = $('.framebookSelector select').val()
 
             var shouldAppendFramebook = $("img[appendFramebook]")
             if (shouldAppendFramebook)
