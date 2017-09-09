@@ -172,27 +172,21 @@
                 <img src="https://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render" />
                 {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                 <div class='previewController'>
-                <label class='framebookSelector'>
-                    <select>
-                    @foreach($mob->framebooks as $animation => $frames)
-                        <option value='{{$animation}}'>{{$animation}}</option>
-                    @endforeach
-                    </select>
-                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </label>
+                <select class='framebookSelector'>
+                @foreach($mob->framebooks as $animation => $frames)
+                    <option value='{{$animation}}'>{{$animation}}</option>
+                @endforeach
+                </select>
                 </div>
             </div>
 
             @foreach($mob->framebooks as $animation => $frames)
                 <div class='framebook' id='{{$animation}}' style='display: none;'>
-                    <label class='frameSelector' style='display: none;' for='{{$animation}}'>
-                        <select>
-                        @for($frameNumber = 0; $frameNumber < $frames; ++$frameNumber)
-                            <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
-                        @endfor
-                        </select>
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </label>
+                    <select class='frameSelector' style='display: none;' for='{{$animation}}'>
+                    @for($frameNumber = 0; $frameNumber < $frames; ++$frameNumber)
+                        <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
+                    @endfor
+                    </select>
                 </div>
             @endforeach
         </div>
@@ -223,7 +217,7 @@
 
 <script>
     $(function() {
-        $('.framebookSelector select').change(function(){
+        $('.framebookSelector').change(function(){
             $('.framebook, .frame').hide()
             $('#' + $(this).val() + ', ' + '#' + $(this).val() + ' .frame:first').show()
 
@@ -240,10 +234,10 @@
     })
 
     function copyAndShowFrameSelector($frameSelector) {
-        $frameSelector.show().find('select').change(function(){
+        $frameSelector.show().change(function(){
             $('.frame').hide()
             $('.frame-' + $(this).val()).show()
-            var frameBook = $('.framebookSelector select').val()
+            var frameBook = $('.framebookSelector').val()
 
             var shouldAppendFramebook = $("img[appendFramebook]")
             if (shouldAppendFramebook)
@@ -298,10 +292,6 @@ section {
     margin-right: 8px;
     float: left;
     flex-shrink: 0;
-}
-
-.previewControls {
-    text-align: center;
 }
 </style>
 @endsection
