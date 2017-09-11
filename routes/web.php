@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/item', function () {
+    $itemList = json_decode(file_get_contents(getenv('API_URL') . '/api/gms/latest/item'));
+    return view('itemlist', ['items' => $itemList]);
+});
+
 Route::get('/item/{id}', function ($id) {
     $itemData = json_decode(file_get_contents(getenv('API_URL') . '/api/gms/latest/item/' . $id));
     return view('item', ['item' => $itemData]);
