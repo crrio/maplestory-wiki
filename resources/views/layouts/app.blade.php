@@ -245,7 +245,7 @@
                 min-width: 128px;
                 text-align: center;
                 color: rgba(255, 255, 255, 0.9);
-                text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+                text-shadow: 0 1px 2px rgba(0,0,0,0.8);
                 font-size: 16px;
                 line-height: 32px;
                 max-width: 128px;
