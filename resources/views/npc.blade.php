@@ -52,7 +52,7 @@
         <b class='title'>Found at</b>
         <ul>
         @foreach($npc->foundAt as $mapEntry)
-            <li><a href='/map/{{$mapEntry->id}}'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a></li>
+            <li><a href='/{{$region}}/{{$version}}/map/{{$mapEntry->id}}'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a></li>
         @endforeach
         </ul>
     </section>

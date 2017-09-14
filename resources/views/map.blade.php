@@ -19,7 +19,7 @@
         <b class='title'>Info</b>
         <table>
         @if(!$map->isTown)
-            <tr><td colspan='2'><a href='/map/{{$map->returnMap}}'>Returns to {{$map->returnMapName->name}} ({{$map->returnMapName->streetName}})</a></td></tr>
+            <tr><td colspan='2'><a href='/{{$region}}/{{$version}}/map/{{$map->returnMap}}'>Returns to {{$map->returnMapName->name}} ({{$map->returnMapName->streetName}})</a></td></tr>
         @else
             <tr><td colspan='2'>Is a town</td></tr>
         @endif
@@ -28,7 +28,7 @@
         <tr><td colspan='2'>You can swim here</td></tr>
         @endif
         @isset($map->linksTo)
-        <tr><td colspan='2'><a href='/map/{{$map->linksTo}}'>Mimics another map</a></td></tr>
+        <tr><td colspan='2'><a href='/{{$region}}/{{$version}}/map/{{$map->linksTo}}'>Mimics another map</a></td></tr>
         @endisset
         @isset($map->minimumStarForce)
         <tr><td>Minimum star force</td><td>{{$map->minimumStarForce}}</td></tr>
@@ -55,7 +55,7 @@
         <span>{{count($knownExits)}} have a known exit</span>
         <ul>
             @foreach($knownExits as $portal)
-                <li><a href='/map/{{$portal->toMapName->id}}'>Portal to {{$portal->toMapName->name}} ({{$portal->toMapName->streetName}})</a></li>
+                <li><a href='/{{$region}}/{{$version}}/map/{{$portal->toMapName->id}}'>Portal to {{$portal->toMapName->name}} ({{$portal->toMapName->streetName}})</a></li>
             @endforeach
         </ul>
     </section>
@@ -64,7 +64,7 @@
         <b>Has {{count($map->mobs)}} Mob spawn points</b>
         <ul>
             @foreach($map->mobs as $mob)
-                <li><a href='/mob/{{$mob->id}}'>{{$mob->name}}</a> at ({{$mob->x}}, {{$mob->y}})</li>
+                <li><a href='/{{$region}}/{{$version}}/mob/{{$mob->id}}'>{{$mob->name}}</a> at ({{$mob->x}}, {{$mob->y}})</li>
             @endforeach
         </ul>
     </section>
@@ -72,7 +72,7 @@
         <b>Has {{count($map->npcs)}} NPCs</b>
         <ul>
             @foreach($map->npcs as $npc)
-                <li><a href='/npc/{{$npc->id}}'>{{$npc->name}}</a> at ({{$npc->x}}, {{$npc->y}})</li>
+                <li><a href='/{{$region}}/{{$version}}/npc/{{$npc->id}}'>{{$npc->name}}</a> at ({{$npc->x}}, {{$npc->y}})</li>
             @endforeach
         </ul>
     </section>

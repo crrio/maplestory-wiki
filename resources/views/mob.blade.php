@@ -117,7 +117,7 @@
         <tr><td>Spawn these mobs after death</td><td><ul>{!! implode(array_map(function ($mob) { return '<li><a href=\'/mob/'.$mob->id.'\'>'.$mob->name.'</a></li>'; }, $mob->meta->revivesMonsterId),'') !!}</ul></td></tr>
     @endisset
     @isset($mob->meta->linksToOtherMob)
-        <tr><td colspan='2'><a href='/mob/{{$mob->meta->linksToOtherMob}}'>Mimics other mob</a></td></tr>
+        <tr><td colspan='2'><a href='/{{$region}}/{{$version}}/mob/{{$mob->meta->linksToOtherMob}}'>Mimics other mob</a></td></tr>
     @endisset
     @isset($mob->meta->onlyNormalAttack)
         <tr><td>Only normal attacks</td><td>{{$mob->meta->onlyNormalAttack}}</td></tr>
@@ -197,7 +197,7 @@
         <b class='title'>Found at</b>
         <ul>
         @foreach($mob->foundAt as $mapEntry)
-            <li><a href='/map/{{$mapEntry->id}}'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a></li>
+            <li><a href='/{{$region}}/{{$version}}/map/{{$mapEntry->id}}'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a></li>
         @endforeach
         </ul>
     </section>
@@ -208,7 +208,7 @@
         <b class='title'>Drops</b>
         <ul>
         @foreach($mob->drops as $drop)
-            <li><a href='/item/{{$drop->id}}'><img src='https://labs.maplestory.io/api/gms/latest/item/{{$drop->id}}/icon' />{{$drop->name}}</a></li>
+            <li><a href='/{{$region}}/{{$version}}/item/{{$drop->id}}'><img src='https://labs.maplestory.io/api/gms/latest/item/{{$drop->id}}/icon' />{{$drop->name}}</a></li>
         @endforeach
         </ul>
     </section>
