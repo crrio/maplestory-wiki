@@ -216,7 +216,11 @@
                 box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.7), 0 0 8px black;
                 border-bottom-right-radius: 6px;
                 padding: 64px 8px 8px 8px;
-                background: linear-gradient(135deg, #bbaa88 0%,#ccbbaa 100%);
+                background: #bbaa88; /* Old browsers */
+                background: -moz-linear-gradient(-45deg, #bbaa88 0%, #ccbbaa 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(-45deg, #bbaa88 0%,#ccbbaa 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(135deg, #bbaa88 0%,#ccbbaa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bbaa88', endColorstr='#ccbbaa',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
             }
 
             .navigation:before {
@@ -319,7 +323,11 @@
             }
 
             .navigation span.header:after {
+                background: rgb(255, 187, 0); /* Old browsers */
+                background: -moz-linear-gradient(-45deg, rgba(255, 238, 68, 1) 0%, rgb(255, 187, 0) 100%); /* FF3.6-15 */
                 background: -webkit-linear-gradient(rgba(255, 238, 68, 1), rgb(255, 187, 0));
+                background: linear-gradient(135deg, rgba(255, 238, 68, 1) 0%, rgb(255, 187, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(255, 238, 68, 1)', endColorstr='rgb(255, 187, 0)',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 font-weight: 600;
@@ -327,8 +335,10 @@
                 text-shadow: none;
                 position: absolute;
                 left: 0px;
+                right: 0px;
                 content: 'NAV';
                 font-size: 18px;
+                text-align: center;
             }
 
             .navigation span.header {
@@ -342,6 +352,7 @@
                 right: 8px;
                 padding-bottom: 2px;
                 border-bottom: 1px solid #aaa;
+                text-align: center;
             }
 
         </style>
