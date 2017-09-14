@@ -123,7 +123,7 @@ input[type="reset"], input[type="submit"] {
         <a href='/{{$region}}/{{$version}}/item/{{$item->Id}}'>
             <li class='item'>
                 <span class='tooltip' data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
-                    <img data-src='https://labs.maplestory.io/api/gms/latest/item/{{$item->Id}}/icon' />
+                    <img data-src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->Id}}/icon' />
                     {{$item->Name}}
                 </span>
             </li>
