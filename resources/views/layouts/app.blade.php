@@ -18,7 +18,6 @@
                 color: #333;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 400;
-                height: 100vh;
             }
 
             html {
@@ -142,6 +141,7 @@
                 max-width: 1084px;
                 margin: 0 auto;
                 position: relative;
+                box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
             }
 
             .content, .content:after {
@@ -151,7 +151,6 @@
                 background: -webkit-linear-gradient(-45deg, #bbaa88 0%,#ccbbaa 100%); /* Chrome10-25,Safari5.1-6 */
                 background: linear-gradient(135deg, #bbaa88 0%,#ccbbaa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bbaa88', endColorstr='#ccbbaa',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-                box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
                 padding: 30px;
                 border-radius: 15px;
                 overflow: hidden;
