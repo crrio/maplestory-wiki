@@ -364,6 +364,7 @@
             <ul>
                 <li><a href='/gms/latest/item'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />Item</a></li>
                 <li><a href='/kms/latest/item'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />아이템</a></li>
+                <li><a href='https://github.com/crrio/maplestory-wiki'>GitHub</a></li>
             </ul>
         </div>
         <div class='container'>
