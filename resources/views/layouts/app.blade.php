@@ -263,6 +263,7 @@
                 display: inline-block;
                 float: left;
                 margin: 1px;
+                min-height: 32px;
             }
 
             @media (min-device-width: 1280px) {
