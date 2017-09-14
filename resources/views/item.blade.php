@@ -92,7 +92,7 @@ table tr td:first-child {
 
 </style>
     <b>Item</b>
-    <a href='/item' class='backButton'>Item List</a>
+    <a href='/{{region}}/{{version}}/item' class='backButton'>Item List</a>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
         <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}'/>
@@ -185,7 +185,7 @@ table tr td:first-child {
             @foreach($item->metaInfo->set->requiredItems as $requiredItemEntry)
                 <div class='requiredItemForSet'>
                     @foreach($requiredItemEntry as $requiredItemOption)
-                    <a href='/item/{{$requiredItemOption->id}}' class='requiredItemOptionForSet'>
+                    <a href='/{{region}}/{{version}}/item/{{$requiredItemOption->id}}' class='requiredItemOptionForSet'>
                         <img src='https://labs.maplestory.io/api/gms/latest/item/{{$requiredItemOption->id}}/icon' />
                         <span>{{$requiredItemOption->name}}</span>
                     </a>

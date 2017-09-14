@@ -63,7 +63,7 @@ input[type="reset"], input[type="submit"] {
 <b>Item Listing</b>
 
 <section>
-    <form method='get' action='/item'>
+    <form method='get' action='/{{region}}/{{version}}/item'>
         <div class='center-form'>
             <label id='minLevel'>
                 <span>Min Level</span>
@@ -120,7 +120,7 @@ input[type="reset"], input[type="submit"] {
             <li>No items could be found :(</li>
         @else
         @foreach($items as $item)
-        <a href='/item/{{$item->Id}}'>
+        <a href='/{{region}}/{{version}}/item/{{$item->Id}}'>
             <li class='item'>
                 <span class='tooltip' data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
                     <img data-src='https://labs.maplestory.io/api/gms/latest/item/{{$item->Id}}/icon' />
