@@ -233,7 +233,7 @@
 
             .navigation li a {
                 min-height: 32px;
-                display: inline-block;
+                display: flex;
                 border-radius: 6px;
                 box-shadow: 0 0 2px black, inset 0 1px 1px rgba(170, 170, 170, 1), inset 0 -1px 1px rgba(119, 119, 119, 1);
                 background: rgba(136, 136, 136, 1);
@@ -245,6 +245,8 @@
                 line-height: 32px;
                 max-width: 128px;
                 max-height: 32px;
+                justify-content: center;
+                align-items: center;
             }
 
             .navigation li a:hover, .navigation li a.selected {
@@ -313,13 +315,17 @@
                 top: 40px;
             }
 
+            .navigation img {
+                flex-shrink: 0;
+            }
+
         </style>
     </head>
     <body>
         <div class='navigation'>
             <ul>
-                <li><a href='/gms/latest/item'>Item</a></li>
-                <li><a href='/kms/latest/item'>아이템</a></li>
+                <li><a href='/gms/latest/item'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />Item</a></li>
+                <li><a href='/kms/latest/item'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />아이템</a></li>
             </ul>
         </div>
         <div class='container'>
