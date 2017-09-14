@@ -60,7 +60,7 @@ input[type="reset"], input[type="submit"] {
 
 </style>
 
-<b>Items by category</b>
+<b>Item Listing</b>
 
 <section>
     <form method='get' action='/item'>
