@@ -95,7 +95,8 @@ Route::get('/{region}/{version}/item', function (Request $request, $region, $ver
     ]);
 });
 
-Route::get('/{region}/{version}/item/{id}', function ($id, $region, $version) {
+Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
+    dd(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id);
     $itemData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id));
     return view('item', [
         'item' => $itemData,
@@ -104,7 +105,7 @@ Route::get('/{region}/{version}/item/{id}', function ($id, $region, $version) {
     ]);
 });
 
-Route::get('/{region}/{version}/mob/{id}', function ($id, $region, $version) {
+Route::get('/{region}/{version}/mob/{id}', function ($region, $version, $id) {
     $mobData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob/'. $id));
     return view('mob', [
         'mob' => $mobData,
@@ -113,7 +114,7 @@ Route::get('/{region}/{version}/mob/{id}', function ($id, $region, $version) {
     ]);
 });
 
-Route::get('/{region}/{version}/npc/{id}', function ($id, $region, $version) {
+Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
     $npcData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/npc/'. $id));
     return view('npc', [
         'npc' => $npcData,
@@ -122,7 +123,7 @@ Route::get('/{region}/{version}/npc/{id}', function ($id, $region, $version) {
     ]);
 });
 
-Route::get('/{region}/{version}/map/{id}', function ($id, $region, $version) {
+Route::get('/{region}/{version}/map/{id}', function ($region, $version, $id) {
     $mapData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/map/'. $id));
     return view('map', [
         'map' => $mapData,
