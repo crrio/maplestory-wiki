@@ -18,9 +18,7 @@
                 color: #333;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 400;
-            }
-
-            html {
+                padding: 0;
                 margin: 0;
             }
 
@@ -199,9 +197,131 @@
                 z-index: 2;
                 border-radius: 100%;
             }
+
+            .navigation ul {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                box-shadow: inset 0 0 4px rgba(60, 60, 60, 0.8);
+                border-radius: 6px;
+                background: rgba(60, 60, 60, 0.2);
+                min-height: 68px;
+                overflow: hidden;
+            }
+
+            .navigation {
+                margin: 0 auto;
+                border-bottom-left-radius: 6px;
+                position: relative;
+                box-shadow: inset 0 0 8px rgba(255, 255, 255, 1), 0 0 8px black;
+                border-bottom-right-radius: 6px;
+                padding: 64px 8px 8px 8px;
+            }
+
+            .navigation:before {
+                content: ' ';
+                position: absolute;
+                background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #e2e1e0 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #e2e1e0 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #e2e1e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(255, 255, 255, 0)', endColorstr='#e2e1e0',GradientType=0 ); /* IE6-9 */
+                height: 64px;
+                top: 0px;
+                left: -6px;
+                right: -6px;
+            }
+
+            .navigation li a {
+                min-height: 32px;
+                display: inline-block;
+                border-radius: 6px;
+                box-shadow: 0 0 2px black, inset 0 1px 1px rgba(170, 170, 170, 1), inset 0 -1px 1px rgba(119, 119, 119, 1);
+                background: rgba(136, 136, 136, 1);
+                min-width: 128px;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.9);
+                text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+                font-size: 16px;
+                line-height: 32px;
+                max-width: 128px;
+                max-height: 32px;
+            }
+
+            .navigation li a:hover, .navigation li a.selected {
+                background: rgba(51, 153, 204, 1);
+                background: linear-gradient(to top, rgba(51, 153, 204, 1) 0%, rgba(51, 187, 238, 1) 100%);
+            }
+
+            .navigation li {
+                display: inline-block;
+                float: left;
+                margin: 1px;
+            }
+
+            @media (min-device-width: 1280px) {
+                .navigation{
+                    max-width: 1056px;
+                }
+            }
+
+            @media (min-device-width: 1024px) and (max-device-width: 1280px) {
+                .navigation {
+                    max-width: 926px;
+                }
+            }
+
+            @media (min-device-width: 896px) and (max-device-width: 1023px) {
+                .navigation {
+                    max-width: 796px;
+                }
+            }
+
+            @media (min-device-width: 768px) and (max-device-width: 911px) {
+                .navigation {
+                    max-width: 666px;
+                }
+            }
+
+            @media (min-device-width: 640px) and (max-device-width: 783px) {
+                .navigation {
+                    max-width: 536px;
+                }
+            }
+
+            @media (min-device-width: 512px) and (max-device-width: 655px) {
+                .navigation {
+                    max-width: 406px;
+                }
+            }
+
+            @media (min-device-width: 300px) and (max-device-width: 527px) {
+                .navigation {
+                    max-width: 276px;
+                }
+            }
+
+            @media (max-device-width: 300px) {
+                .navigation {
+                    max-width: 146px;
+                }
+            }
+
+
+            .navigation:after {
+                content: 'Navigation';
+                position: absolute;
+                top: 40px;
+            }
+
         </style>
     </head>
     <body>
+        <div class='navigation'>
+            <ul>
+                <li><a href='/gms/latest/item'>Item</a></li>
+                <li><a href='/kms/latest/item'>아이템</a></li>
+            </ul>
+        </div>
         <div class='container'>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- maplestory.wiki -->
