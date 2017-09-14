@@ -1,6 +1,85 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+
+.itemName {
+    display: flex;
+    flex-direction: column;
+}
+
+.primaryInfo {
+    display: flex;
+    align-items: center;
+}
+
+.primaryInfo img, .equipImagesContainer .preview .previewControls img, .requiredItemOptionForSet img {
+    margin-right: 8px;
+    float: left;
+    flex-shrink: 0;
+}
+
+table tr td:first-child {
+    text-align: right;
+    padding-right: 5px;
+}
+
+.equipInfo table tr td:first-child:after {
+    content: ': ';
+}
+
+.previewControls {
+    display: inline-flex;
+    overflow: hidden;
+    float: right;
+}
+
+.previewController {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.equipInfo, .dropInfo, .setInfo {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 0 16px;
+}
+
+.requiredItemForSet {
+    margin: 4px 0;
+}
+
+.requiredItemOptionForSet {
+    display: flex;
+    align-items: center;
+}
+
+.dropInfo li {
+    display: flex;
+    margin: 6px 0;
+}
+
+.dropInfo li a {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.dropInfo img {
+    margin-right: 8px;
+    float: left;
+    flex-shrink: 0;
+}
+
+.preview {
+    overflow: visible;
+    height: 100px;
+}
+
+</style>
+
     <b>Item</b>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
@@ -140,77 +219,3 @@
     }
     </script>
 @endsection
-
-<style>
-
-.itemName {
-    display: flex;
-    flex-direction: column;
-}
-
-.primaryInfo {
-    display: flex;
-    align-items: center;
-}
-
-.primaryInfo img, .equipImagesContainer .preview .previewControls img, .requiredItemOptionForSet img {
-    margin-right: 8px;
-    float: left;
-    flex-shrink: 0;
-}
-
-table tr td:first-child {
-    text-align: right;
-    padding-right: 5px;
-}
-
-.equipInfo table tr td:first-child:after {
-    content: ': ';
-}
-
-.previewControls {
-    display: inline-flex;
-    overflow: hidden;
-    float: right;
-}
-
-.previewController {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.equipInfo, .dropInfo, .setInfo {
-    align-items: center;
-    display: inline-flex;
-    flex-direction: column;
-    padding: 0 16px;
-}
-
-.requiredItemForSet {
-    margin: 4px 0;
-}
-
-.requiredItemOptionForSet {
-    display: flex;
-    align-items: center;
-}
-
-.dropInfo li {
-    display: flex;
-    margin: 6px 0;
-}
-
-.dropInfo li a {
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-}
-
-.dropInfo img {
-    margin-right: 8px;
-    float: left;
-    flex-shrink: 0;
-}
-
-</style>
