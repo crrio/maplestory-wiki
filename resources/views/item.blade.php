@@ -78,9 +78,21 @@ table tr td:first-child {
     height: 100px;
 }
 
-</style>
+.backButton:before {
+    content: '< ';
+    margin-right: 4px;
+}
 
+.backButton {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+</style>
     <b>Item</b>
+    <a href='/item' class='backButton'>Item List</a>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
         <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}'/>
