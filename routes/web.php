@@ -21,10 +21,10 @@ Route::get('/item', function (Request $request) {
     $query = [];
     $oldData = [];
 
-    $page = $request->query('page');
-    if (isset($page)) {
-        $query[] = 'startPosition=' . urlencode($page);
-        $oldData['page'] = $page;
+    $position = $request->query('position');
+    if (isset($position)) {
+        $query[] = 'startPosition=' . urlencode($position);
+        $oldData['position'] = $position;
     }
     $count = $request->query('count') ?? '50';
     if (isset($count)) {
