@@ -17,6 +17,7 @@
 
     <div class='itemData'>
         @isset($item->metaInfo->equip)
+        @isset($item->frameBooks)
         <section class="equipImagesContainer">
             <b class='title'>Preview</b>
 
@@ -67,6 +68,7 @@
                 @endforeach
             </div>
         </section>
+        @endisset
 
         @component('equip-info', ['item' => $item])
         @endcomponent

@@ -1,5 +1,5 @@
 <section class='equipInfo'>
-    <b>Equipment Information</b>
+    <b>Information</b>
     <table>
 @isset($item->metaInfo->equip->reqSTR)
         <tr>
