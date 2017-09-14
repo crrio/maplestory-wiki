@@ -67,11 +67,11 @@ input[type="reset"], input[type="submit"] {
         <div class='center-form'>
             <label id='minLevel'>
                 <span>Min Level</span>
-                <input type='number' name='minLevel' value='{{$oldQuery['minLevel'] ?? ''}}' />
+                <input type='number' name='minLevel' value='{{$oldQuery['minLevel'] ?? ''}}' min="1" max="250" />
             </label>
             <label id='maxLevel'>
                 <span>Max Level</span>
-                <input type='number' name='maxLevel' value='{{$oldQuery['maxLevel'] ?? ''}}' />
+                <input type='number' name='maxLevel' value='{{$oldQuery['maxLevel'] ?? ''}}' min="1" max="250" />
             </label>
             <label id='count'>
                 <span>How many to show</span>
