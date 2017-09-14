@@ -74,8 +74,8 @@ table tr td:first-child {
 }
 
 .preview {
-    overflow: visible;
-    height: 100px;
+    overflow: hidden;
+    min-height: 100px;
 }
 
 .backButton:before {
