@@ -319,6 +319,11 @@
                 flex-shrink: 0;
             }
 
+            .container {
+                margin: 16px auto;
+                max-width: 1084px;
+            }
+
         </style>
     </head>
     <body>
