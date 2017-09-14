@@ -213,9 +213,10 @@
                 margin: 0 auto;
                 border-bottom-left-radius: 6px;
                 position: relative;
-                box-shadow: inset 0 0 8px rgba(255, 255, 255, 1), 0 0 8px black;
+                box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.7), 0 0 8px black;
                 border-bottom-right-radius: 6px;
                 padding: 64px 8px 8px 8px;
+                background: linear-gradient(135deg, #bbaa88 0%,#ccbbaa 100%);
             }
 
             .navigation:before {
@@ -308,13 +309,6 @@
                 }
             }
 
-
-            .navigation:after {
-                content: 'Navigation';
-                position: absolute;
-                top: 40px;
-            }
-
             .navigation img {
                 flex-shrink: 0;
             }
@@ -324,10 +318,37 @@
                 max-width: 1084px;
             }
 
+            .navigation span.header:after {
+                background: -webkit-linear-gradient(rgba(255, 238, 68, 1), rgb(255, 187, 0));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 600;
+                color: white;
+                text-shadow: none;
+                position: absolute;
+                left: 0px;
+                content: 'NAV';
+                font-size: 18px;
+            }
+
+            .navigation span.header {
+                position: absolute;
+                text-shadow: 0 0 1px black;
+                font-weight: 600;
+                top: 32px;
+                color: white;
+                font-size: 18px;
+                left: 8px;
+                right: 8px;
+                padding-bottom: 2px;
+                border-bottom: 1px solid #aaa;
+            }
+
         </style>
     </head>
     <body>
         <div class='navigation'>
+            <span class='header'>NAV</span>
             <ul>
                 <li><a href='/gms/latest/item'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />Item</a></li>
                 <li><a href='/kms/latest/item'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />아이템</a></li>
