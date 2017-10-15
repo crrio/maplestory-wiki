@@ -1,9 +1,273 @@
+// Init
+@charset "UTF-8";
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@font-face {
+  font-family: MapleStory;
+  src: url('/fonts/maplelight.tff');
+}
 
-// Variables
-@import "variables";
+@font-face {
+  font-family: MapleStoryBold;
+  src: url('/fonts/maplebold.tff');
+}
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+// Stylesheets
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+html, body {
+  background-color: #e2e1e0;
+  color: #333;
+  font-family: 'MapleStory', sans-serif;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  text-align: center;
+  margin: 30px 0px;
+}
+
+footer .btn, .btn-soft {
+  background: rgba(255,255,255,0.4);
+  font-weight: 600 !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #007fff;
+  text-shadow: 0px 0px 0px #007fff;
+  font-weight: 400;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+span {
+  font-weight: 100;
+  text-shadow: 0px 0px 0px #000;
+}
+
+h1, h2, h3 {
+  font-weight: 200 !important;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+
+.title {
+  font-size: 84px;
+}
+
+.links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+section {
+  margin: 16px 0 8px 0;
+}
+
+header {
+  margin: 0 0 8px 0;
+}
+
+section .title, header .title {
+  font-size: 24px;
+}
+
+.bold {
+  font-weight: 600;
+  text-shadow: none;
+}
+
+.desc-b {
+  color: #5699af;
+}
+.desc-c {
+  color: darkorange;
+}
+.desc-d {
+  color: purple;
+}
+.desc-e {
+  font-weight: bold;
+}
+.desc-r {
+  color: red; /* Used in quest dialogs and some items with warnings / dangerous */
+}
+.desc-g {
+  color: green;
+}
+.desc-k {
+  color: black; /* Nexon'd tag, but still need to add it so it's replaced. Used in some custom dialogs */
+}
+
+.container {
+  min-height: 100px;
+  margin-bottom: 16px;
+}
+
+.text-success {
+  color: #27c24c;
+}
+
+.text-danger {
+  color: #f05050;
+}
+
+.content {
+  padding: 20px 20px;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-width: 1084px;
+  margin: 0 auto;
+  position: relative;
+  background: #F1F1F1;
+}
+
+.content > * {
+  z-index: 3;
+  position: relative;
+}
+
+b {
+  font-weight: 700;
+}
+
+b.title {
+  width: 100%;
+  display: block;
+}
+
+.navigation ul {
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+  box-shadow: inset 0 0 4px rgba(60, 60, 60, 0.8);
+  border-radius: 6px;
+  background: rgba(60, 60, 60, 0.2);
+  min-height: 48px;
+  overflow: hidden;
+}
+
+.navigation {
+  margin: 0 auto;
+  border-bottom-left-radius: 6px;
+  position: relative;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.7), 0 0 8px black;
+  border-bottom-right-radius: 6px;
+  padding: 64px 8px 8px 8px;
+  background: #bbaa88; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #bbaa88 0%, #ccbbaa 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #bbaa88 0%,#ccbbaa 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #bbaa88 0%,#ccbbaa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bbaa88', endColorstr='#ccbbaa',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.navigation:before {
+  content: ' ';
+  position: absolute;
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #e2e1e0 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #e2e1e0 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, #e2e1e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(255, 255, 255, 0)', endColorstr='#e2e1e0',GradientType=0 ); /* IE6-9 */
+  height: 64px;
+  top: 0px;
+  left: -6px;
+  right: -6px;
+}
+
+.navigation li a {
+  min-height: 32px;
+  display: flex;
+  border-radius: 6px;
+  box-shadow: 0 0 2px black, inset 0 1px 1px rgba(170, 170, 170, 1), inset 0 -1px 1px rgba(119, 119, 119, 1);
+  background: rgba(136, 136, 136, 1);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  font-size: 16px;
+  line-height: 32px;
+  max-width: 128px;
+  max-height: 32px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.navigation li a:hover, .navigation li a.selected {
+  background: rgba(51, 153, 204, 1);
+  background: linear-gradient(to top, rgba(51, 153, 204, 1) 0%, rgba(51, 187, 238, 1) 100%);
+}
+
+.navigation li {
+  display: inline-block;
+  float: left;
+  margin: 1px;
+  min-height: 32px;
+  margin-right: 10px;
+}
+
+.navigation img {
+  flex-shrink: 0;
+}
+
+.container {
+  margin: 16px auto;
+  max-width: 1084px;
+}
+
+.navigation span.header {
+  position: absolute;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.4);
+  font-weight: 600;
+  top: 0px;
+  color: white;
+  font-size: 42px;
+  left: 8px;
+  right: 8px;
+  padding-bottom: 2px;
+  text-align: center;
+}
