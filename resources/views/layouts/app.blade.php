@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>MapleStory: Wiki</title>
+        <title>@yield('title', 'Site') | MapleStory: Wiki</title>
 
         <link href="/css/app.css" rel="stylesheet" type="text/css">
         <script src='/js/app.js'></script>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Home
+@endsection
+
 @section('content')
     <h4>Greetings.</h4>
     <p>This is a work in progress, in the meanwhile join us on our <a href='https://discord.gg/WhmT8dU' class="btn btn-soft btn-sm"><i class="fab fa-discord"></i> Discord</a></p>

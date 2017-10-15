@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{$npc->name}}
+@endsection
+
 @section('content')
 <header>
     <div class='title'>

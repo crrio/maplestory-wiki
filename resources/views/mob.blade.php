@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{$mob->name}}
+@endsection
+
 @section('content')
 <header class="primaryInfo">
     <b>Mob</b>

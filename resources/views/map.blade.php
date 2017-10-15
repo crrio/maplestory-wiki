@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{$map->name}}
+@endsection
+
 @section('content')
 
 <b>Map</b>
