@@ -60,10 +60,10 @@ input[type="reset"], input[type="submit"] {
 
 </style>
 
-<b>Item Listing</b>
+<h3>Items <a href='/gms/latest/items' class="btn btn-sm btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-sm btn-soft">한국어</a></h3>
 
 <section>
-    <form method='get' action='/{{$region}}/{{$version}}/item'>
+    <form method='get' action='/{{$region}}/{{$version}}/items'>
         <div class='center-form'>
             <label id='minLevel'>
                 <span>Min Level</span>
@@ -120,14 +120,14 @@ input[type="reset"], input[type="submit"] {
             <li>No items could be found :(</li>
         @else
         @foreach($items as $item)
-        <a href='/{{$region}}/{{$version}}/item/{{$item->Id}}'>
             <li class='item'>
-                <span class='tooltip' data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
-                    <img data-src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->Id}}/icon' />
-                    {{$item->Name}}
-                </span>
+                <a href='/{{$region}}/{{$version}}/item/{{$item->Id}}'>
+                    <span data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
+                        <img data-src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->Id}}/icon' />
+                        {{$item->Name}}
+                    </span>
+                </a>
             </li>
-        </a>
         @endforeach
         @endempty
     </ul>
