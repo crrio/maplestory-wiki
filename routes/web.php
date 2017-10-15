@@ -86,7 +86,7 @@ Route::get('/{region}/{version}/items', function (Request $request, $region, $ve
     $itemList = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item?' . $queryJoined));
     $categories = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/category'));
 
-    return view('itemlist', [
+    return view('items.itemlist', [
         'items' => $itemList,
         'oldQuery' => $oldData,
         'categories' => $categories,
@@ -97,7 +97,7 @@ Route::get('/{region}/{version}/items', function (Request $request, $region, $ve
 
 Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
     $itemData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id));
-    return view('item', [
+    return view('items.item', [
         'item' => $itemData,
         'region' => $region,
         'version' => $version
@@ -106,7 +106,7 @@ Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
 
 Route::get('/{region}/{version}/mob/{id}', function ($region, $version, $id) {
     $mobData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob/'. $id));
-    return view('mob', [
+    return view('mobs.mob', [
         'mob' => $mobData,
         'region' => $region,
         'version' => $version
@@ -115,7 +115,7 @@ Route::get('/{region}/{version}/mob/{id}', function ($region, $version, $id) {
 
 Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
     $npcData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/npc/'. $id));
-    return view('npc', [
+    return view('npcs.npc', [
         'npc' => $npcData,
         'region' => $region,
         'version' => $version
@@ -124,7 +124,7 @@ Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
 
 Route::get('/{region}/{version}/map/{id}', function ($region, $version, $id) {
     $mapData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/map/'. $id));
-    return view('map', [
+    return view('maps.map', [
         'map' => $mapData,
         'region' => $region,
         'version' => $version
