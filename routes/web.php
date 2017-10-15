@@ -96,7 +96,14 @@ Route::get('/{region}/{version}/items', function (Request $request, $region, $ve
 });
 
 Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
-    $itemData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id));
+    $itemData = @file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id);
+
+    if(!$itemData) {
+        return response()->view('errors.500', [], 500);
+    }
+
+    $itemData = json_decode($itemData);
+
     return view('items.item', [
         'item' => $itemData,
         'region' => $region,
