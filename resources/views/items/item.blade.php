@@ -107,7 +107,7 @@ table tr td:first-child {
 
     <div class='itemData'>
         @isset($item->metaInfo->equip)
-        @component('equip-info', ['item' => $item])
+        @component('items.equip-info', ['item' => $item])
         @endcomponent
         @isset($item->frameBooks)
         <section class="equipImagesContainer">
