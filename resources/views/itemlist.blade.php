@@ -60,7 +60,7 @@ input[type="reset"], input[type="submit"] {
 
 </style>
 
-<h3>Items <a href='/gms/latest/items' class="btn btn-sm btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-sm btn-soft">한국어</a></h3>
+<h3>Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a></h3>
 
 <section>
     <form method='get' action='/{{$region}}/{{$version}}/items'>
