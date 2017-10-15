@@ -31,20 +31,24 @@ table tr td:first-child {
 .previewControls {
     display: inline-flex;
     overflow: hidden;
-    float: right;
-}
-
-.previewController {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-around;
+    float: left;
 }
 
 .equipInfo, .dropInfo, .setInfo {
-    align-items: center;
     display: inline-flex;
     flex-direction: column;
     padding: 0 16px;
+}
+
+.equipInfo {
+    background: rgba(0,0,0,0.1);
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#framebookexpand {
+    float: right;
 }
 
 .requiredItemForSet {
@@ -78,27 +82,18 @@ table tr td:first-child {
     min-height: 100px;
 }
 
-.backButton:before {
-    content: '< ';
-    margin-right: 4px;
-}
-
-.backButton {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 </style>
-    <b>Item</b>
-    <a href='/{{$region}}/{{$version}}/item' class='backButton'>Item List</a>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/items">Items</a></li>
+        <li class="breadcrumb-item active">{{ $item->description->name }}</li>
+    </ol>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
-        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}'/>
+        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' style="width:200px;image-rendering: pixelated;margin:20px;"/>
     @endisset
         <div class='itemName title'>
-            <span class="name">{{ $item->description->name }}</span>
+            <span class="name display-4">{{ $item->description->name }}</span>
             <span class="category">{{ $item->typeInfo->overallCategory }} - {{ $item->typeInfo->category }} {{ $item->typeInfo->subCategory }}</span>
 @isset($item->description->description)
             <span>{!! ParseMapleString($item->description->description) !!}</span>
@@ -108,10 +103,16 @@ table tr td:first-child {
 
     <div class='itemData'>
         @isset($item->metaInfo->equip)
+        @component('equip-info', ['item' => $item])
+        @endcomponent
         @isset($item->frameBooks)
         <section class="equipImagesContainer">
-            <b class='title'>Preview</b>
-
+            <b class='title mb-3'>
+                Preview
+                <a class="btn btn-soft btn-sm" data-toggle="collapse" href="#framebookexpand" aria-expanded="false" aria-controls="framebookexpand">
+                    View Technical Details
+                </a>
+            </b>
             <div class='preview'>
                 <div class='previewControls'>
                 @php
@@ -127,42 +128,40 @@ table tr td:first-child {
                     </select>
                     </div>
                 </div>
-
-                @foreach($item->frameBooks as $animation => $book)
-                    <div class='framebook' id='{{$animation}}' style='display: none;'>
-                        <select class='frameSelector' style='display: none;'>
-                            @foreach($book->frames as $frameNumber => $frame)
-                                <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
-                            @endforeach
-                        </select>
-                            @foreach($book->frames as $frameNumber => $frame)
-                            <div class='frame frame-{{$frameNumber}}' style='display: none;'>
-                                @foreach($frame->effects as $effectName => $effectSegment)
-                                @isset($effectSegment->image)
-                                    <div>
-                                        <span>{{$effectName}}</span>
-                                        <img src='data:image/png;base64,{{$effectSegment->image}}' />
-                                        <span>Origin</span>
-                                        <span>{{$effectSegment->originOrZero->x}}, {{$effectSegment->originOrZero->y}}</span>
-                                        <span>Map Offsets</span>
-                                        <table>
-                                            @foreach($effectSegment->mapOffset as $mapFrom => $mapOffset)
-                                                <tr><td>{{$mapFrom}}</td><td>{{$mapOffset->x}}, {{$mapOffset->y}}</td></tr>
-                                            @endforeach
-                                        </table>
-                                    </div>
-                                @endisset
+                <div id="framebookexpand" class="collapse">
+                    @foreach($item->frameBooks as $animation => $book)
+                        <div class='framebook' id='{{$animation}}' style='display: none;'>
+                            <select class='frameSelector' style='display: none;'>
+                                @foreach($book->frames as $frameNumber => $frame)
+                                    <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
                                 @endforeach
-                            </div>
-                            @endforeach
-                    </div>
-                @endforeach
+                            </select>
+                                @foreach($book->frames as $frameNumber => $frame)
+                                <div class='frame frame-{{$frameNumber}}' style='display: none;'>
+                                    @foreach($frame->effects as $effectName => $effectSegment)
+                                    @isset($effectSegment->image)
+                                        <div>
+                                            <span>{{$effectName}}</span>
+                                            <img src='data:image/png;base64,{{$effectSegment->image}}' />
+                                            <span>Origin</span>
+                                            <span>{{$effectSegment->originOrZero->x}}, {{$effectSegment->originOrZero->y}}</span>
+                                            <span>Map Offsets</span>
+                                            <table>
+                                                @foreach($effectSegment->mapOffset as $mapFrom => $mapOffset)
+                                                    <tr><td>{{$mapFrom}}</td><td>{{$mapOffset->x}}, {{$mapOffset->y}}</td></tr>
+                                                @endforeach
+                                            </table>
+                                        </div>
+                                    @endisset
+                                    @endforeach
+                                </div>
+                                @endforeach
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </section>
         @endisset
-
-        @component('equip-info', ['item' => $item])
-        @endcomponent
         @endisset
 
         @if(count($item->metaInfo->droppedBy) > 0)
