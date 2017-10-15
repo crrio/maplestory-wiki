@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{region}/{version}/item', function (Request $request, $region, $version) {
+Route::get('/{region}/{version}/items', function (Request $request, $region, $version) {
     $query = [];
     $oldData = [];
 
