@@ -17,7 +17,8 @@
                     <span class='header'>MapleStory: Wiki</span>
                     <ul>
                         <li><a href='/'><i class="fa fa-home"></i></a></li>
-                        <li><a href='/gms/latest/items'><img src='https://labs.maplestory.io/api/gms/latest/item/1302000/iconRaw' />Items</a></li>
+                        <li><a href='/gms/latest/items'><img src='https://labs.maplestory.io/api/gms/latest/item/4001126/iconRaw' /> Items</a></li>
+                        <li class="d-none"><a href='/gms/latest/npcs'><img src='https://labs.maplestory.io/api/gms/latest/npc/9000086/icon' /> NPCs</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,5 +50,6 @@
                 <a href='https://discord.gg/WhmT8dU' class='btn'><i class="fab fa-discord"></i> Join our Discord</a>
             </p>
         </footer>
+        @yield('js')
     </body>
 </html>
