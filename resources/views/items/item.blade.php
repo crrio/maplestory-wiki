@@ -173,7 +173,7 @@ table tr td:first-child {
             <b>Dropped By</b>
             <ul>
             @foreach ($item->metaInfo->droppedBy as $mobInfo)
-                <li><a href='/mob/{{$mobInfo->id}}'><img src='https://labs.maplestory.io/api/gms/latest/mob/{{$mobInfo->id}}/icon'> {{$mobInfo->name}}</a></li>
+                <li><a href='/gms/latest/mob/{{$mobInfo->id}}'><img src='https://labs.maplestory.io/api/gms/latest/mob/{{$mobInfo->id}}/icon'> {{$mobInfo->name}}</a></li>
             @endforeach
             </ul>
         </section>
