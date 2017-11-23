@@ -85,11 +85,7 @@ input[type="reset"], input[type="submit"] {
                     <option value='50' {{ (($oldQuery['count'] ?? 0) == 50) ? 'selected' : '' }}>50</option>
                     <option value='100' {{ (($oldQuery['count'] ?? 0) == 100) ? 'selected' : '' }}>100</option>
                     <option value='250' {{ (($oldQuery['count'] ?? 0) == 250) ? 'selected' : '' }}>250</option>
-                    <option value='500' {{ (($oldQuery['count'] ?? 0) == 500) ? 'selected' : '' }}>500</option>
-                    <option value='1000' {{ (($oldQuery['count'] ?? 0) == 1000) ? 'selected' : '' }}>1000</option>
-                    <option value='2500' {{ (($oldQuery['count'] ?? 0) == 2500) ? 'selected' : '' }}>2500</option>
-                    <option value='5000' {{ (($oldQuery['count'] ?? 0) == 5000) ? 'selected' : '' }}>5000</option>
-                    <option value='10000' {{ (($oldQuery['count'] ?? 0) == 10000) ? 'selected' : '' }}>10000</option>
+                    <option value='500' {{ (($oldQuery['count'] ?? 0) == 500) ? 'selected' : '' }}>250</option>
                 </select>
             </label>
             <label id='job'>
@@ -123,20 +119,31 @@ input[type="reset"], input[type="submit"] {
         @empty($items)
             <li>No items could be found :(</li>
         @else
+        <div class="items row">
+            <div class="size col-md-6 col-lg-4 col-sm-12 d-none"></div>
         @foreach($items as $item)
-            <li class='item'>
-                <a href='/{{$region}}/{{$version}}/item/{{$item->Id}}'>
-                    <span data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
-                        <img data-src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->Id}}/icon' />
-                        {{$item->Name}}
-                    </span>
-                </a>
-            </li>
+            <div class="item col-md-6 col-lg-4 col-sm-12">
+                <div class="card mb-1 mr-1">
+                    <div class="card-body p-2" style="overflow:hidden;">
+                        <a href='/{{$region}}/{{$version}}/item/{{$item->Id}}'>
+                        <span data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
+                            <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->Id}}/icon' />
+                            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;width:100%;">{{ $item->Name }}</span><br/>
+                        </a>
+                            <span class="category"><span class="badge badge-info">{{ $item->TypeInfo->OverallCategory }}</span> {{ $item->TypeInfo->Category }} <i class="fa fa-chevron-right"></i> {{ $item->TypeInfo->SubCategory }}</span>
+                        </span>
+                    
+                    </div>
+                </div>
+            </div>
         @endforeach
+        </div>
         @endempty
     </ul>
 </section>
+@endsection
 
+@section('js')
 <script>
 /**
  * jQuery Unveil
@@ -273,4 +280,14 @@ $(document).ready(function () {
 
 </script>
 
+    <script type="text/javascript">
+        var iso = new Isotope( '.items', {
+            itemSelector: '.item', // use a separate class for itemSelector, other than .col-
+            layoutMode: 'masonry',
+            masonry: {
+            gutter: 0,
+            columnWidth: .size
+            }
+        });
+    </script>
 @endsection
