@@ -7,3 +7,5 @@ require('./solid')
 require('./brands')
 window.Popper = window.Popper ? window.Popper : require('./popper');
 require('bootstrap');
+
+window.Isotope = window.Isotope ? window.Isotope : require('isotope-layout');
