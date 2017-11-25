@@ -4,6 +4,34 @@
     {{$npc->name}}
 @endsection
 
+@section('css')
+<style>
+table tr td:first-child {
+    text-align: right;
+    padding-right: 5px;
+}
+
+section, header {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+section {
+    align-items: center;
+    padding: 0 16px;
+}
+
+.previewController {
+    display: flex;
+    justify-content: space-around;
+}
+
+.preview {
+    float: right;
+}
+</style>
+@endsection
+
 @section('content')
 <header>
     <div class='title'>
@@ -71,7 +99,9 @@
         </ul>
     </section>
 </div>
+@endsection
 
+@section('js')
 <script>
     $(function() {
         if($('.framebookSelector').change(function(){
@@ -105,30 +135,4 @@
         $('.previewController').append($frameSelector)
     }
 </script>
-
-<style>
-table tr td:first-child {
-    text-align: right;
-    padding-right: 5px;
-}
-
-section, header {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-section {
-    align-items: center;
-    padding: 0 16px;
-}
-
-.previewController {
-    display: flex;
-    justify-content: space-around;
-}
-
-.preview {
-    float: right;
-}
-</style>
 @endsection

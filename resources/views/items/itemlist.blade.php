@@ -4,7 +4,7 @@
     Items
 @endsection
 
-@section('content')
+@section('css')
 <style>
 
 ul {
@@ -61,9 +61,10 @@ input[type="number"], input[type="text"], input[type="reset"], input[type="submi
 input[type="reset"], input[type="submit"] {
     margin: 8px;
 }
-
 </style>
+@endsection
 
+@section('content')
 <h3>Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a></h3>
 
 <section>

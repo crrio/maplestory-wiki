@@ -8,6 +8,7 @@
         <title>@yield('title', 'Site') | MapleStory: Wiki</title>
 
         <link href="/css/app.css" rel="stylesheet" type="text/css">
+        @yield('css')
         <script src='/js/app.js'></script>
     </head>
     <body>

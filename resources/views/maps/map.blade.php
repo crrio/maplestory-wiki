@@ -4,8 +4,42 @@
     {{$map->name}}
 @endsection
 
-@section('content')
+@section('css')
+<style>
+.primaryInfo .title {
+    display: flex;
+    flex-direction: column;
+}
 
+.primaryInfo {
+    display: flex;
+    align-items: center;
+}
+
+.primaryInfo img.icon {
+    margin-right: 8px;
+    float: left;
+    flex-shrink: 0;
+}
+
+.primaryInfo img.minimap {
+    float: right;
+    margin: 0 0 0 auto;
+}
+
+section {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+section {
+    align-items: center;
+    padding: 0 16px;
+}
+</style>
+@endsection
+
+@section('content')
 <b>Map</b>
 <header class='primaryInfo'>
     <img src='https://labs.maplestory.io/api/gms/latest/map/{{$map->id}}/icon' class='icon' />
@@ -81,39 +115,4 @@
         </ul>
     </section>
 </div>
-
-
-<style>
-.primaryInfo .title {
-    display: flex;
-    flex-direction: column;
-}
-
-.primaryInfo {
-    display: flex;
-    align-items: center;
-}
-
-.primaryInfo img.icon {
-    margin-right: 8px;
-    float: left;
-    flex-shrink: 0;
-}
-
-.primaryInfo img.minimap {
-    float: right;
-    margin: 0 0 0 auto;
-}
-
-section {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-section {
-    align-items: center;
-    padding: 0 16px;
-}
-</style>
-
 @endsection

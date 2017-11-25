@@ -4,7 +4,7 @@
     {{ $item->description->name }}
 @endsection
 
-@section('content')
+@section('css')
 <style>
 
 .itemName {
@@ -13,7 +13,6 @@
 }
 
 .primaryInfo {
-    display: flex;
     align-items: center;
 }
 
@@ -85,8 +84,10 @@ table tr td:first-child {
     overflow: hidden;
     min-height: 100px;
 }
-
 </style>
+@endsection
+
+@section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
         <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/items">Items</a></li>
@@ -94,7 +95,7 @@ table tr td:first-child {
     </ol>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
-        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' style="width:200px;image-rendering: pixelated;margin:20px;"/>
+        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' style="width:200px;image-rendering: pixelated;margin:20px;float:right;display:block;"/>
     @endisset
         <div class='itemName title'>
             <span class="name display-4">{{ $item->description->name }}</span>
@@ -199,8 +200,10 @@ table tr td:first-child {
         </section>
         @endisset
     </div>
+@endsection
 
-    <script>
+@section('js')
+<script>
     $(function() {
         $('.framebookSelector').change(function(){
             $('.framebook, .frame').hide()
@@ -232,5 +235,5 @@ table tr td:first-child {
         $('.previewController .frameSelector').remove()
         $('.previewController').append($frameSelector)
     }
-    </script>
+</script>
 @endsection
