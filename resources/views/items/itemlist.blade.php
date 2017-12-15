@@ -105,7 +105,7 @@ input[type="reset"], input[type="submit"] {
         <div class='categoryContainer center-form'>
             <label id='search'>
                 <span>Text Search</span>
-                <input type='text' name='searchFor' value='{{$oldQuery['search'] ?? ''}}' />
+                <input type='text' name='search' value='{{$oldQuery['search'] ?? ''}}' />
             </label>
             <label id='cash'>
                 <span>Cash Filter</span>
