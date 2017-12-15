@@ -103,6 +103,10 @@ input[type="reset"], input[type="submit"] {
             </label>
         </div>
         <div class='categoryContainer center-form'>
+            <label id='minLevel'>
+                <span>Search</span>
+                <input type='text' name='searchFor' value='{{$oldQuery['search'] ?? ''}}' />
+            </label>
             <label id='cash'>
                 <span>Cash Filter</span>
                 <input type='checkbox' name='cash' {{ ($oldQuery['cash'] ? 'checked' : '') }} />
@@ -133,7 +137,7 @@ input[type="reset"], input[type="submit"] {
                         </a>
                             <span class="category"><span class="badge badge-info">{{ $item->TypeInfo->OverallCategory }}</span> {{ $item->TypeInfo->Category }} <i class="fa fa-chevron-right"></i> {{ $item->TypeInfo->SubCategory }}</span>
                         </span>
-                    
+
                     </div>
                 </div>
             </div>
