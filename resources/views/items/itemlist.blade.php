@@ -103,8 +103,8 @@ input[type="reset"], input[type="submit"] {
             </label>
         </div>
         <div class='categoryContainer center-form'>
-            <label id='minLevel'>
-                <span>Search</span>
+            <label id='search'>
+                <span>Text Search</span>
                 <input type='text' name='searchFor' value='{{$oldQuery['search'] ?? ''}}' />
             </label>
             <label id='cash'>
