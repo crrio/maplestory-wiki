@@ -130,12 +130,12 @@ input[type="reset"], input[type="submit"] {
             <div class="item col-md-6 col-lg-4 col-sm-12">
                 <div class="card mb-1 mr-1">
                     <div class="card-body p-2" style="overflow:hidden;">
-                        <a href='/{{$region}}/{{$version}}/item/{{$item->Id}}'>
-                        <span data-required-jobs='{{implode($item->RequiredJobs ?? [], ', ')}}' data-is-cash='{{$item->IsCash}}' data-required-gender='{{$item->RequiredGender}}' data-required-level='{{$item->RequiredLevel}}'>
-                            <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->Id}}/icon' />
-                            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;width:100%;">{{ $item->Name }}</span><br/>
+                        <a href='/{{$region}}/{{$version}}/item/{{$item->id}}'>
+                        <span data-required-jobs='{{implode($item->requiredJobs ?? [], ', ')}}' data-is-cash='{{$item->isCash}}' data-required-gender='{{$item->requiredGender}}' data-required-level='{{$item->requiredLevel}}'>
+                            <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->id}}/icon' />
+                            <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;width:100%;">{{ $item->name }}</span><br/>
                         </a>
-                            <span class="category"><span class="badge badge-info">{{ $item->TypeInfo->OverallCategory }}</span> {{ $item->TypeInfo->Category }} <i class="fa fa-chevron-right"></i> {{ $item->TypeInfo->SubCategory }}</span>
+                            <span class="category"><span class="badge badge-info">{{ $item->typeInfo->overallCategory }}</span> {{ $item->typeInfo->category }} <i class="fa fa-chevron-right"></i> {{ $item->typeInfo->subCategory }}</span>
                         </span>
 
                     </div>
