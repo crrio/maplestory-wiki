@@ -42,7 +42,7 @@ section {
 @section('content')
 <b>Map</b>
 <header class='primaryInfo'>
-    <img src='https://labs.maplestory.io/api/gms/latest/map/{{$map->id}}/icon' class='icon' />
+    <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/map/{{$map->id}}/icon' class='icon' />
     <div class='title'>
         <span class="name">{{$map->name}}</span>
         <span class="street">{{$map->streetName}}</span>
@@ -78,10 +78,10 @@ section {
         <tr><td>Minimum level</td><td>{{$map->minimumLevel}}</td></tr>
         @endisset
         <tr><td>Bounds</td><td>{{$map->vrBounds->left}},{{$map->vrBounds->top}} -&gt; {{$map->vrBounds->right}},{{$map->vrBounds->bottom}}</td></tr>
-        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/gms/latest/map/{{$map->id}}/render'>Full map rendering</a></td></tr>
-        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/gms/latest/map/{{$map->id}}/render?showLife=true'>Full map rendering with life</a></td></tr>
-        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/gms/latest/map/{{$map->id}}/render?showPortals=true'>Full map rendering with portals</a></td></tr>
-        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/gms/latest/map/{{$map->id}}/render?showLife=true&showPortals=true'>Full map rendering with life and portals</a></td></tr>
+        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/{{$region}}/{{$version}}/map/{{$map->id}}/render'>Full map rendering</a></td></tr>
+        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/{{$region}}/{{$version}}/map/{{$map->id}}/render?showLife=true'>Full map rendering with life</a></td></tr>
+        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/{{$region}}/{{$version}}/map/{{$map->id}}/render?showPortals=true'>Full map rendering with portals</a></td></tr>
+        <tr><td colspan='2'><a href='https://labs.maplestory.io/api/{{$region}}/{{$version}}/map/{{$map->id}}/render?showLife=true&showPortals=true'>Full map rendering with life and portals</a></td></tr>
         </table>
     </section>
 
