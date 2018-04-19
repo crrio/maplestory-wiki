@@ -53,9 +53,9 @@ section {
         <div>
             <div class='previewControls'>
             @if(isset($npc->isComponentNPC) && $npc->isComponentNPC)
-                <img src="https://labs.maplestory.io/api/gms/latest/character/{{$npc->componentSkin}}/{{implode($npc->componentIds, ',')}}" />
+                <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/character/{{$npc->componentSkin}}/{{implode($npc->componentIds, ',')}}" />
             @else
-                <img src="https://labs.maplestory.io/api/gms/latest/npc/{{$npc->id}}/render/{{array_keys(get_object_vars($npc->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/npc/{{$npc->id}}/render" />
+                <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/npc/{{$npc->id}}/render/{{array_keys(get_object_vars($npc->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/{{$region}}/{{$version}}/npc/{{$npc->id}}/render" />
                 {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                 <div class='previewController'>
                 <select class='framebookSelector'>

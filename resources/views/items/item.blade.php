@@ -123,7 +123,7 @@ table tr td:first-child {
                 @php
                     $skinId = GetRandomSkin();
                 @endphp
-                    <img src="https://labs.maplestory.io/api/gms/latest/character/{{$skinId}}/{{$item->id}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/character/{{$skinId}}/{{$item->id}}" />
+                    <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/character/{{$skinId}}/{{$item->id}}" appendFramebook="https://labs.maplestory.io/api/{{$region}}/{{$version}}/character/{{$skinId}}/{{$item->id}}" />
                     {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                     <div class='previewController'>
                     <select class='framebookSelector'>
@@ -174,7 +174,7 @@ table tr td:first-child {
             <b>Dropped By</b>
             <ul>
             @foreach ($item->metaInfo->droppedBy as $mobInfo)
-                <li><a href='/gms/latest/mob/{{$mobInfo->id}}'><img src='https://labs.maplestory.io/api/gms/latest/mob/{{$mobInfo->id}}/icon'> {{$mobInfo->name}}</a></li>
+                <li><a href='/{{$region}}/{{$version}}/mob/{{$mobInfo->id}}'><img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mobInfo->id}}/icon'> {{$mobInfo->name}}</a></li>
             @endforeach
             </ul>
         </section>
@@ -190,7 +190,7 @@ table tr td:first-child {
                 <div class='requiredItemForSet'>
                     @foreach($requiredItemEntry as $requiredItemOption)
                     <a href='/{{$region}}/{{$version}}/item/{{$requiredItemOption->id}}' class='requiredItemOptionForSet'>
-                        <img src='https://labs.maplestory.io/api/gms/latest/item/{{$requiredItemOption->id}}/icon' />
+                        <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$requiredItemOption->id}}/icon' />
                         <span>{{$requiredItemOption->name}}</span>
                     </a>
                     @endforeach

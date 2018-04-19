@@ -222,7 +222,7 @@ section {
 
         <div>
             <div class='previewControls'>
-                <img src="https://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/gms/latest/mob/{{$mob->id}}/render" />
+                <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/render" />
                 {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                 <div class='previewController'>
                 <select class='framebookSelector'>
@@ -261,7 +261,7 @@ section {
         <b class='title'>Drops</b>
         <ul>
         @foreach($mob->drops as $drop)
-            <li><a href='/{{$region}}/{{$version}}/item/{{$drop->id}}'><img src='https://labs.maplestory.io/api/gms/latest/item/{{$drop->id}}/icon' />{{$drop->name}}</a></li>
+            <li><a href='/{{$region}}/{{$version}}/item/{{$drop->id}}'><img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$drop->id}}/icon' />{{$drop->name}}</a></li>
         @endforeach
         </ul>
     </section>
