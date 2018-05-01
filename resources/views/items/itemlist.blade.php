@@ -65,7 +65,7 @@ input[type="reset"], input[type="submit"] {
 @endsection
 
 @section('content')
-<h3>Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a></h3>
+<h3>Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a> <a href='/jms/latest/items' class='btn btn-soft'>日本語</a> <a href='/cms/latest/items' class='btn btn-soft'>中文</a></h3>
 
 <section>
     <form method='get' action='/{{$region}}/{{$version}}/items'>
