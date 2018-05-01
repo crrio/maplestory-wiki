@@ -142,6 +142,7 @@ table tr td:first-child {
                                 @endforeach
                             </select>
                                 @foreach($book->frames as $frameNumber => $frame)
+                                @isset($frame)
                                 <div class='frame frame-{{$frameNumber}}' style='display: none;'>
                                     @foreach($frame->effects as $effectName => $effectSegment)
                                     @isset($effectSegment)
@@ -162,6 +163,7 @@ table tr td:first-child {
                                     @endisset
                                     @endforeach
                                 </div>
+                                @endisset
                                 @endforeach
                         </div>
                     @endforeach
