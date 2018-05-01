@@ -144,6 +144,7 @@ table tr td:first-child {
                                 @foreach($book->frames as $frameNumber => $frame)
                                 <div class='frame frame-{{$frameNumber}}' style='display: none;'>
                                     @foreach($frame->effects as $effectName => $effectSegment)
+                                    @isset($effectSegment)
                                     @isset($effectSegment->image)
                                         <div>
                                             <span>{{$effectName}}</span>
@@ -157,6 +158,7 @@ table tr td:first-child {
                                                 @endforeach
                                             </table>
                                         </div>
+                                    @endisset
                                     @endisset
                                     @endforeach
                                 </div>
