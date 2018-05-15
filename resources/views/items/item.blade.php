@@ -1,16 +1,10 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $item->description->name }}
-@endsection
+@section('title', $item->description->name)
+@section('image', 'http://maplestory.io/api/gms/latest/item/'.$item->id.'/icon?resize=5')
 
 @section('css')
 <style>
-
-.itemName {
-    display: flex;
-    flex-direction: column;
-}
 
 .primaryInfo {
     align-items: center;
@@ -23,12 +17,7 @@
 }
 
 table tr td:first-child {
-    text-align: right;
     padding-right: 5px;
-}
-
-.equipInfo table tr td:first-child:after {
-    content: ': ';
 }
 
 .previewControls {
@@ -38,16 +27,21 @@ table tr td:first-child {
 }
 
 .equipInfo, .dropInfo, .setInfo {
-    display: inline-flex;
-    flex-direction: column;
+    /* display: inline-flex;
+    flex-direction: column; */
     padding: 0 16px;
 }
 
+.itemData {
+    z-index: 1;
+}
+
 .equipInfo {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.7);
     width: 100%;
     padding: 10px 20px;
     border-radius: 5px;
+    color: #FFF;
 }
 
 #framebookexpand {
@@ -95,11 +89,11 @@ table tr td:first-child {
     </ol>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
-        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' style="width:200px;image-rendering: pixelated;margin:20px;float:right;display:block;"/>
+        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' style="width:200px;image-rendering: pixelated;margin:20px;float:right;display:block;z-index:1999;"/>
     @endisset
         <div class='itemName title'>
-            <span class="name display-4">{{ $item->description->name }}</span>
-            <span class="category">{{ $item->typeInfo->overallCategory }} - {{ $item->typeInfo->category }} {{ $item->typeInfo->subCategory }}</span>
+            <span class="name display-4">{{ $item->description->name }}</span><br/>
+            <span class="category"><span class="badge badge-primary">{{ $item->typeInfo->overallCategory }}</span> <span class="badge badge-primary">{{ $item->typeInfo->category }} ({{ $item->typeInfo->subCategory }})</span></span>
 @isset($item->description->description)
             <span>{!! ParseMapleString($item->description->description) !!}</span>
 @endisset
@@ -117,13 +111,16 @@ table tr td:first-child {
                 <a class="btn btn-soft btn-sm" data-toggle="collapse" href="#framebookexpand" aria-expanded="false" aria-controls="framebookexpand">
                     View Technical Details
                 </a>
+                <a class="btn btn-soft btn-sm" href="//maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->id}}" target="_blank">
+                    View API Request
+                </a>
             </b>
             <div class='preview'>
                 <div class='previewControls'>
                 @php
                     $skinId = GetRandomSkin();
                 @endphp
-                    <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/character/{{$skinId}}/{{$item->id}}" appendFramebook="https://labs.maplestory.io/api/{{$region}}/{{$version}}/character/{{$skinId}}/{{$item->id}}" />
+                    <img src="https://maplestory.io/api/{{$region}}/{{$version}}/character/{{$skinId}}/{{$item->id}}" appendFramebook="https://maplestory.io/api/{{$region}}/{{$version}}/character/{{$skinId}}/{{$item->id}}" />
                     {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
                     <div class='previewController'>
                     <select class='framebookSelector'>
@@ -178,7 +175,7 @@ table tr td:first-child {
             <b>Dropped By</b>
             <ul>
             @foreach ($item->metaInfo->droppedBy as $mobInfo)
-                <li><a href='/{{$region}}/{{$version}}/mob/{{$mobInfo->id}}'><img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mobInfo->id}}/icon'> {{$mobInfo->name}}</a></li>
+                <li><a href='/{{$region}}/{{$version}}/mob/{{$mobInfo->id}}'><img src='https://maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mobInfo->id}}/icon'> {{$mobInfo->name}}</a></li>
             @endforeach
             </ul>
         </section>
@@ -194,7 +191,7 @@ table tr td:first-child {
                 <div class='requiredItemForSet'>
                     @foreach($requiredItemEntry as $requiredItemOption)
                     <a href='/{{$region}}/{{$version}}/item/{{$requiredItemOption->id}}' class='requiredItemOptionForSet'>
-                        <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$requiredItemOption->id}}/icon' />
+                        <img src='https://maplestory.io/api/{{$region}}/{{$version}}/item/{{$requiredItemOption->id}}/icon' />
                         <span>{{$requiredItemOption->name}}</span>
                     </a>
                     @endforeach

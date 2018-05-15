@@ -1,274 +1,201 @@
 <section class='equipInfo'>
-    <table>
-@isset($item->metaInfo->equip->reqSTR)
-        <tr>
-            <td>Requires this STR</td>
-            <td>{{ $item->metaInfo->equip->reqSTR }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqDEX)
-        <tr>
-            <td>Requires this DEX</td>
-            <td>{{ $item->metaInfo->equip->reqDEX }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqINT)
-        <tr>
-            <td>Requires this INT</td>
-            <td>{{ $item->metaInfo->equip->reqINT }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqLUK)
-        <tr>
-            <td>Requires this LUK</td>
-            <td>{{ $item->metaInfo->equip->reqLUK }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqPOP)
-        <tr>
-            <td>Requires this fame</td>
-            <td>{{ $item->metaInfo->equip->reqPOP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqJob)
-        <tr>
-            <td>Requires this job</td>
-            <td>{{ GetRequiredJobs($item->metaInfo->equip->reqJob) }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqJob2)
-        <tr>
-            <td>Requires this secondary job</td>
-            <td>{{ $item->metaInfo->equip->reqJob2 }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqSpecJob)
-        <tr>
-            <td>Requires this special job</td>
-            <td>{{ $item->metaInfo->equip->reqSpecJob }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->reqLevel)
-        <tr>
-            <td>Requires this level</td>
-            <td>{{ $item->metaInfo->equip->reqLevel }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->tuc)
-        <tr>
-            <td>Scrollable Count</td>
-            <td>{{ $item->metaInfo->equip->tuc }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incSTR)
-        <tr>
-            <td>Increases STR by</td>
-            <td>{{ $item->metaInfo->equip->incSTR }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incDEX)
-        <tr>
-            <td>Increases DEX by</td>
-            <td>{{ $item->metaInfo->equip->incDEX }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incINT)
-        <tr>
-            <td>Increases INT by</td>
-            <td>{{ $item->metaInfo->equip->incINT }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incLUK)
-        <tr>
-            <td>Increases LUK by</td>
-            <td>{{ $item->metaInfo->equip->incLUK }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incMHP)
-        <tr>
-            <td>Increases Max HP by</td>
-            <td>{{ $item->metaInfo->equip->incMHP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incMMP)
-        <tr>
-            <td>Increases Max MP by</td>
-            <td>{{ $item->metaInfo->equip->incMMP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incPAD)
-        <tr>
-            <td>Increases Weapon ATT by</td>
-            <td>{{ $item->metaInfo->equip->incPAD }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incMAD)
-        <tr>
-            <td>Increases Magic ATT by</td>
-            <td>{{ $item->metaInfo->equip->incMAD }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incPDD)
-        <tr>
-            <td>Increases Weapon DEF by</td>
-            <td>{{ $item->metaInfo->equip->incPDD }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incMDD)
-        <tr>
-            <td>Increases Magic DEF by</td>
-            <td>{{ $item->metaInfo->equip->incMDD }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incACC)
-        <tr>
-            <td>Increases ACC by</td>
-            <td>{{ $item->metaInfo->equip->incACC }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incEVA)
-        <tr>
-            <td>Increases EVA by</td>
-            <td>{{ $item->metaInfo->equip->incEVA }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incCraft)
-        <tr>
-            <td>Increases Craft by</td>
-            <td>{{ $item->metaInfo->equip->incCraft }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incSpeed)
-        <tr>
-            <td>Increases Speed by</td>
-            <td>{{ $item->metaInfo->equip->incSpeed }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->incJump)
-        <tr>
-            <td>Increases Jump by</td>
-            <td>{{ $item->metaInfo->equip->incJump }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->tradeBlock)
-        <tr>
-            <td>Is trade blocked</td>
-            <td>{{ $item->metaInfo->equip->tradeBlock == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->equipTradeBlock)
-        <tr>
-            <td>Is tradeblocked after equipped</td>
-            <td>{{ $item->metaInfo->equip->equipTradeBlock == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->exItem)
-        <tr>
-            <td>Is an Exclusive/Unique item</td>
-            <td>{{ $item->metaInfo->equip->exItem == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->charmEXP)
-        <tr>
-            <td>Increases charm by </td>
-            <td>{{ $item->metaInfo->equip->charmEXP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->willEXP)
-        <tr>
-            <td>Increases willpower by </td>
-            <td>{{ $item->metaInfo->equip->willEXP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->charismaEXP)
-        <tr>
-            <td>Increases charisma by </td>
-            <td>{{ $item->metaInfo->equip->charismaEXP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->craftEXP)
-        <tr>
-            <td>Increases crafting by </td>
-            <td>{{ $item->metaInfo->equip->craftEXP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->senseEXP)
-        <tr>
-            <td>Increases insight by </td>
-            <td>{{ $item->metaInfo->equip->senseEXP }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->tradeAvailable)
-        <tr>
-            <td>The type of trading that's available</td>
-            <td>{{ GetTradeAvailable($item->metaInfo->equip->tradeAvailable) }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->superiorEqp)
-        <tr>
-            <td>If the item is a superior equip</td>
-            <td>{{ $item->metaInfo->equip->superiorEqp == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->noPotential)
-        <tr>
-            <td>The character can not put a potential on this item</td>
-            <td>{{ $item->metaInfo->equip->noPotential == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->unchangeable)
-        <tr>
-            <td>The character can not change anything on this item</td>
-            <td>{{ $item->metaInfo->equip->unchangeable == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->durability)
-        <tr>
-            <td>This item has a durability</td>
-            <td>{{ $item->metaInfo->equip->durability == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->accountSharable)
-        <tr>
-            <td>Is possible to move in account</td>
-            <td>{{ $item->metaInfo->equip->accountSharable == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->attackSpeed)
-        <tr>
-            <td>Attack Speed</td>
-            <td>{{ $item->metaInfo->equip->attackSpeed }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->bdR)
-        <tr>
-            <td>The boss damage this item gives</td>
-            <td>{{ $item->metaInfo->equip->bdR }}%</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->bossReward)
-        <tr>
-            <td>Reward for fighting against bosses</td>
-            <td>{{ $item->metaInfo->equip->bossReward == 1 ? 'true' : 'false' }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->imdR)
-        <tr>
-            <td>The ignore defense this item gives</td>
-            <td>{{ $item->metaInfo->equip->imdR }}%</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->islot)
-        <tr>
-            <td>Exclusive slot of item</td>
-            <td>{{ $item->metaInfo->equip->islot }}</td>
-        </tr>
-@endisset
-@isset($item->metaInfo->equip->vslot)
-        <tr>
-            <td>Visual Slots of item</td>
-            <td>{{ $item->metaInfo->equip->vslot }}</td>
-        </tr>
-@endisset
-    </table>
+    @if(isset($item->metaInfo->equip->reqSTR) || isset($item->metaInfo->equip->reqDEX) || isset($item->metaInfo->equip->reqINT) || isset($item->metaInfo->equip->reqLUK) || isset($item->metaInfo->equip->reqJob))
+        <span class="badge badge-danger mr-1">Required:</span>
+
+        @isset($item->metaInfo->equip->reqLevel)
+            <span class="badge badge-success mr-1">Level {{ $item->metaInfo->equip->reqLevel }}</span>
+        @endisset
+
+        @isset($item->metaInfo->equip->reqSTR)
+            <span class="badge badge-dark mr-1">{{ $item->metaInfo->equip->reqSTR }} STR</span>
+        @endisset
+        @isset($item->metaInfo->equip->reqDEX)
+            <span class="badge badge-dark mr-1">{{ $item->metaInfo->equip->reqDEX }} DEX</span>
+        @endisset
+        @isset($item->metaInfo->equip->reqINT)
+            <span class="badge badge-dark mr-1">{{ $item->metaInfo->equip->reqINT }} INT</span>
+        @endisset
+        @isset($item->metaInfo->equip->reqLUK)
+            <span class="badge badge-dark mr-1">{{ $item->metaInfo->equip->reqLUK }} LUK</span>
+        @endisset
+        @isset($item->metaInfo->equip->reqPOP)
+            <span class="badge badge-dark mr-1">{{ $item->metaInfo->equip->reqPOP }} Fame</span>
+        @endisset
+
+        @isset($item->metaInfo->equip->reqJob)
+            <span class="badge badge-dark mr-1">
+                Equippable by: {{ GetRequiredJobs($item->metaInfo->equip->reqJob) }}
+                
+                @isset($item->metaInfo->equip->reqJob2)
+                    (Sub-class: {{ $item->metaInfo->equip->reqJob2 }} )
+                @endisset
+
+                @isset($item->metaInfo->equip->reqSpecJob)
+                    (Special class: {{ $item->metaInfo->equip->reqSpecJob }} )
+                @endisset
+            </span>
+        @endisset
+        <br/>
+        @isset($item->metaInfo->equip->tradeAvailable)
+            <span class="text-warning mr-1">{{ GetTradeAvailable($item->metaInfo->equip->tradeAvailable) }}</span>
+        @endisset
+    @endif
+
+    <ul class="list-unstyled mb-0">
+
+    @isset($item->metaInfo->equip->exItem)
+        <li>
+            <b>{{ $item->metaInfo->equip->exItem == 1 ? '(Exclusive / Unique Item)' : '' }}</b>
+        </li>
+    @endisset
+
+    @isset($item->metaInfo->equip->superiorEqp)
+        <li style="color:yellow">
+            <b>{{ $item->metaInfo->equip->superiorEqp == 1 ? 'Superior Equip' : '' }}</b>
+        </li>
+    @endisset
+
+    <!-- STR/DEX/INT/LUK  -->
+    @isset($item->metaInfo->equip->incSTR)
+        <li>+ {{ $item->metaInfo->equip->incSTR }} STR</li>
+    @endisset
+    @isset($item->metaInfo->equip->incDEX)
+        <li>+ {{ $item->metaInfo->equip->incDEX }} DEX</li>
+    @endisset
+    @isset($item->metaInfo->equip->incINT)
+        <li>+ {{ $item->metaInfo->equip->incINT }} INT</li>
+    @endisset
+    @isset($item->metaInfo->equip->incLUK)
+        <li>+ {{ $item->metaInfo->equip->incLUK }} LUK</li>
+    @endisset
+
+    <!-- HP / MP -->
+    @isset($item->metaInfo->equip->incMHP)
+        <li>+ {{ $item->metaInfo->equip->incMHP }} HP</li>
+    @endisset
+    @isset($item->metaInfo->equip->incMMP)
+        <li>+ {{ $item->metaInfo->equip->incMMP }} MP</li>
+    @endisset
+
+    <!-- Attack / M. Attack -->
+    @isset($item->metaInfo->equip->incPAD)
+        <li>+ {{ $item->metaInfo->equip->incPAD }} Weapon Attack</li>
+    @endisset
+    @isset($item->metaInfo->equip->incMAD)
+        <li>+ {{ $item->metaInfo->equip->incMAD }} Magic Attack</li>
+    @endisset
+
+    <!-- Etc -->
+    @isset($item->metaInfo->equip->incPDD)
+        <li>+ {{ $item->metaInfo->equip->incPDD }} Weapon Defense</li>
+    @endisset
+    @isset($item->metaInfo->equip->incMDD)
+        <li>+ {{ $item->metaInfo->equip->incMDD }} Magic Defense</li>
+    @endisset
+    @isset($item->metaInfo->equip->incACC)
+        <li>+ {{ $item->metaInfo->equip->incACC }} Accuracy</li>
+    @endisset
+    @isset($item->metaInfo->equip->incEVA)
+        <li>+ {{ $item->metaInfo->equip->incEVA }} Avoidability</li>
+    @endisset
+
+    @isset($item->metaInfo->equip->incCraft)
+        <li>+ {{ $item->metaInfo->equip->incCraft }} Craft</li>
+    @endisset
+    @isset($item->metaInfo->equip->incSpeed)
+        <li>+ {{ $item->metaInfo->equip->incSpeed }} Speed</li>
+    @endisset
+    @isset($item->metaInfo->equip->incJump)
+        <li>+ {{ $item->metaInfo->equip->incJump }} Jump</li>
+    @endisset
+
+    <!-- Traits -->
+    @isset($item->metaInfo->equip->charmEXP)
+        <li>+ {{ $item->metaInfo->equip->charmEXP }} Charm (Trait)</li>
+    @endisset
+    @isset($item->metaInfo->equip->willEXP)
+        <li>+ {{ $item->metaInfo->equip->willEXP }} Willpower (Trait)</li>
+    @endisset
+    @isset($item->metaInfo->equip->charismaEXP)
+        <li>+ {{ $item->metaInfo->equip->charismaEXP }} Charisma (Trait)</li>
+    @endisset
+    @isset($item->metaInfo->equip->craftEXP)
+        <li>+ {{ $item->metaInfo->equip->craftEXP }} Diligence (Trait)</li>
+    @endisset
+    @isset($item->metaInfo->equip->senseEXP)
+        <li>+ {{ $item->metaInfo->equip->senseEXP }} Insight (Trait)</li>
+    @endisset
+
+    @isset($item->metaInfo->equip->tuc)
+        <br/>
+        <li><b>This item can be scrolled {{ $item->metaInfo->equip->tuc }} times.</b></li>
+    @endisset
+
+    {{-- <!-- Tradable Status -->
+    @isset($item->metaInfo->equip->tradeBlock)
+        <li>Is this item tradable? {{ $item->metaInfo->equip->tradeBlock == 1 ? 'Yes' : 'No' }}</li> 
+    @endisset
+    @isset($item->metaInfo->equip->equipTradeBlock)
+        <li>
+            {{ $item->metaInfo->equip->equipTradeBlock == 1 ? 'This item can not be traded after being equipped.' : '' }}
+        </li>
+    @endisset --}}
+
+    @isset($item->metaInfo->equip->noPotential)
+            <tr>
+                <td>The character can not put a potential on this item</td>
+                <td>{{ $item->metaInfo->equip->noPotential == 1 ? 'true' : 'false' }}</td>
+            </tr>
+    @endisset
+    @isset($item->metaInfo->equip->unchangeable)
+            <tr>
+                <td>The character can not change anything on this item</td>
+                <td>{{ $item->metaInfo->equip->unchangeable == 1 ? 'true' : 'false' }}</td>
+            </tr>
+    @endisset
+    @isset($item->metaInfo->equip->durability)
+            <tr>
+                <td>This item has a durability</td>
+                <td>{{ $item->metaInfo->equip->durability == 1 ? 'true' : 'false' }}</td>
+            </tr>
+    @endisset
+    @isset($item->metaInfo->equip->accountSharable)
+        <li>{{ $item->metaInfo->equip->accountSharable == 1 ? 'It is possible to move this through storage to other characters.' : '' }}</li>
+    @endisset
+    @isset($item->metaInfo->equip->attackSpeed)
+            <tr>
+                <td>Attack Speed</td>
+                <td>{{ $item->metaInfo->equip->attackSpeed }}</td>
+            </tr>
+    @endisset
+    @isset($item->metaInfo->equip->bdR)
+            <tr>
+                <td>The boss damage this item gives</td>
+                <td>{{ $item->metaInfo->equip->bdR }}%</td>
+            </tr>
+    @endisset
+    @isset($item->metaInfo->equip->bossReward)
+            <li><i>{{ $item->metaInfo->equip->bossReward == 1 ? 'This item is rewarded for fighting against a specific boss.' : '' }}</i></li>
+    @endisset
+    @isset($item->metaInfo->equip->imdR)
+            <tr>
+                <td>The ignore defense this item gives</td>
+                <td>{{ $item->metaInfo->equip->imdR }}%</td>
+            </tr>
+    @endisset
+    {{-- 
+        These aren't actual stats we want to display on the item infoirmation.
+        @isset($item->metaInfo->equip->islot)
+            <tr>
+                <td>Exclusive slot of item</td>
+                <td>{{ $item->metaInfo->equip->islot }}</td>
+            </tr>
+    @endisset
+    @isset($item->metaInfo->equip->vslot)
+            <tr>
+                <td>Visual Slots of item</td>
+                <td>{{ $item->metaInfo->equip->vslot }}</td>
+            </tr>
+    @endisset --}}
+    </ul>
 </section>
