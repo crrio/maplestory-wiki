@@ -56,19 +56,65 @@ input[type="number"], input[type="text"], input[type="reset"], input[type="submi
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(0, 0, 0, 0.4)', endColorstr='rgba(0, 0, 0, 0.2)',GradientType=0 ); */
     color: rgba(255, 255, 255, 0.7);
     text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: .25rem;
+}
+.search-box {
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: .25rem;
 }
 
 input[type="reset"], input[type="submit"] {
     margin: 8px;
 }
+
+.count {
+    width: 125px;
+    height: 37px;
+}
 </style>
 @endsection
 
 @section('content')
-<h3>Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a> <a href='/jms/latest/items' class='btn btn-soft'>日本語</a> <a href='/cms/latest/items' class='btn btn-soft'>中文</a></h3>
-
-<section>
-    <form method='get' action='/{{$region}}/{{$version}}/items'>
+<form method='get' action='/{{$region}}/{{$version}}/items'>
+    <h3>
+        Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a> <a href='/jms/latest/items' class='btn btn-soft'>日本語</a> <a href='/cms/latest/items' class='btn btn-soft'>中文</a>
+        <span class="float-right search-box">
+            <i class="fa fa-search fa-fw"></i>
+            <input type='text' name='search' value='{{$oldQuery['search'] ?? ''}}'/>
+            <select name='count' class="count">
+                <option value='10' {{ (($oldQuery['count'] ?? 0) == 10) ? 'selected' : '' }}>10 Items</option>
+                <option value='25' {{ (($oldQuery['count'] ?? 0) == 25) ? 'selected' : '' }}>25 Items</option>
+                <option value='50' {{ (($oldQuery['count'] ?? 0) == 50) ? 'selected' : '' }}>50 Items</option>
+                <option value='100' {{ (($oldQuery['count'] ?? 0) == 100) ? 'selected' : '' }}>100 Items</option>
+                <option value='250' {{ (($oldQuery['count'] ?? 0) == 250) ? 'selected' : '' }}>250 Items</option>
+                <option value='500' {{ (($oldQuery['count'] ?? 0) == 500) ? 'selected' : '' }}>250 Items</option>
+            </select>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa fa-cog"></i>
+            </a>
+        </span>
+    </h3>
+    <div class="collapse" id="collapseExample">
         <div class='center-form'>
             <label id='minLevel'>
                 <span>Min Level</span>
@@ -78,19 +124,8 @@ input[type="reset"], input[type="submit"] {
                 <span>Max Level</span>
                 <input type='number' name='maxLevel' value='{{$oldQuery['maxLevel'] ?? ''}}' min="1" max="250" />
             </label>
-            <label id='count'>
-                <span>How many to show</span>
-                <select name='count'>
-                    <option value='10' {{ (($oldQuery['count'] ?? 0) == 10) ? 'selected' : '' }}>10</option>
-                    <option value='25' {{ (($oldQuery['count'] ?? 0) == 25) ? 'selected' : '' }}>25</option>
-                    <option value='50' {{ (($oldQuery['count'] ?? 0) == 50) ? 'selected' : '' }}>50</option>
-                    <option value='100' {{ (($oldQuery['count'] ?? 0) == 100) ? 'selected' : '' }}>100</option>
-                    <option value='250' {{ (($oldQuery['count'] ?? 0) == 250) ? 'selected' : '' }}>250</option>
-                    <option value='500' {{ (($oldQuery['count'] ?? 0) == 500) ? 'selected' : '' }}>250</option>
-                </select>
-            </label>
             <label id='job'>
-                <span>Required Jobs</span>
+                <span>Job</span>
                 <select name='job'>
                     <option></option>
                     <option value='0' {{ (isset($oldQuery['job']) && in_array('0', $oldQuery['job']) ? 'selected' : '') }}>Beginner</option>
@@ -101,23 +136,17 @@ input[type="reset"], input[type="submit"] {
                     <option value='16' {{ (isset($oldQuery['job']) && in_array('16', $oldQuery['job']) ? 'selected' : '') }}>Pirate</option>
                 </select>
             </label>
-        </div>
-        <div class='categoryContainer center-form'>
-            <label id='search'>
-                <span>Text Search</span>
-                <input type='text' name='search' value='{{$oldQuery['search'] ?? ''}}' />
-            </label>
-            <label id='cash'>
-                <span>Cash Filter</span>
-                <input type='checkbox' name='cash' {{ ($oldQuery['cash'] ? 'checked' : '') }} />
-            </label>
-        </div>
-        <div class='center-form'>
+            <div class='categoryContainer'>
+                <label id='cash'>
+                    <span>Cash Filter</span>
+                    <input type='checkbox' name='cash' {{ ($oldQuery['cash'] ? 'checked' : '') }} />
+                </label>
+            </div>
             <input type='reset' value='Restore filter' />
             <input type='submit' value='Apply filter' />
         </div>
-    </form>
-</section>
+    </div>
+</form>
 
 <section>
     <ul>
@@ -132,7 +161,7 @@ input[type="reset"], input[type="submit"] {
                     <div class="card-body p-2" style="overflow:hidden;">
                         <a href='/{{$region}}/{{$version}}/item/{{$item->id}}'>
                         <span data-required-jobs='{{implode($item->requiredJobs ?? [], ', ')}}' data-is-cash='{{$item->isCash}}' data-required-gender='{{$item->requiredGender}}' data-required-level='{{$item->requiredLevel}}'>
-                            <img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->id}}/icon' />
+                            <img src='https://maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->id}}/icon' />
                             <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;width:100%;">{{ $item->name }}</span><br/>
                         </a>
                             <span class="category"><span class="badge badge-info">{{ $item->typeInfo->overallCategory }}</span> {{ $item->typeInfo->category }} <i class="fa fa-chevron-right"></i> {{ $item->typeInfo->subCategory }}</span>
