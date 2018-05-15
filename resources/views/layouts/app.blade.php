@@ -6,6 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>@yield('title', 'Site') | MapleStory: Wiki</title>
+        <meta name='keywords' content="maplestory, maplestory wiki, maple wiki, maplestory knowledge base, gms, maplestory classes, maplestory items">
+        <meta name='description' content="The complete knowledge base and database for Maplestory.">
+        <meta property="og:url" content="{{ url()->current() }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="@yield('title', 'Site') | MapleStory: Wiki" />
+        <meta property="og:description" content="The complete knowledge base and database for Maplestory." />
+        <meta property="og:image" content="@yield('image', 'http://maplestory.io/api/gms/latest/mob/100006/icon?resize=3')" />
+        <link rel="stylesheet" href="/css/app.css">
+        <meta name="twitter:site" content="@crrio">
+        <meta name="twitter:title" content="@yield('title', '') | MapleStory: Wiki">
+        <meta name="twitter:description" content="The complete knowledge base and database for Maplestory.">
 
         <link href="/css/app.css" rel="stylesheet" type="text/css">
         @yield('css')
@@ -18,8 +29,8 @@
                     <span class='header'>MapleStory: Wiki</span>
                     <ul>
                         <li><a href='/'><i class="fa fa-home"></i></a></li>
-                        <li><a href='/gms/latest/items'><img src='https://labs.maplestory.io/api/gms/latest/item/4001126/iconRaw' /> Items</a></li>
-                        <li class="d-none"><a href='/gms/latest/npcs'><img src='https://labs.maplestory.io/api/gms/latest/npc/9000086/icon' /> NPCs</a></li>
+                        <li><a href='/gms/latest/items'><img src='https://maplestory.io/api/gms/latest/item/4001126/iconRaw' /> Items</a></li>
+                        <li class="d-none"><a href='/gms/latest/npcs'><img src='https://maplestory.io/api/gms/latest/npc/9000086/icon' /> NPCs</a></li>
                     </ul>
                 </div>
             </div>
