@@ -7,7 +7,7 @@
 
         <title>@yield('title', 'Site') | MapleStory: Wiki</title>
         <meta name='keywords' content="maplestory, maplestory wiki, maple wiki, maplestory knowledge base, gms, maplestory classes, maplestory items">
-        <meta name='description' content="The complete knowledge base and database for Maplestory.">
+        <meta name='description' content="@yield('desc', 'The complete knowledge base and database for Maplestory.')">
         <meta property="og:url" content="{{ url()->current() }}" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="@yield('title', 'Site') | MapleStory: Wiki" />
