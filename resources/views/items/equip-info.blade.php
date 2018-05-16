@@ -36,10 +36,14 @@
             </span>
         @endisset
         <br/>
-        @isset($item->metaInfo->equip->tradeAvailable)
-            <span class="text-warning mr-1">{{ GetTradeAvailable($item->metaInfo->equip->tradeAvailable) }}</span>
-        @endisset
     @endif
+
+    @isset($item->metaInfo->equip->tradeAvailable)
+        <span class="text-warning mr-1">{{ GetTradeAvailable($item->metaInfo->equip->tradeAvailable) }}</span>
+    @endisset
+    @isset($item->metaInfo->equip->tradeBlock)
+        <span class="text-warning mr-1">{{ $item->metaInfo->equip->tradeBlock == true ? 'Untradeable' : '' }}</span> 
+    @endisset
 
     <ul class="list-unstyled mb-0">
 
@@ -131,11 +135,7 @@
         <li><b>This item can be scrolled {{ $item->metaInfo->equip->tuc }} times.</b></li>
     @endisset
 
-    {{-- <!-- Tradable Status -->
-    @isset($item->metaInfo->equip->tradeBlock)
-        <li>Is this item tradable? {{ $item->metaInfo->equip->tradeBlock == 1 ? 'Yes' : 'No' }}</li> 
-    @endisset
-    @isset($item->metaInfo->equip->equipTradeBlock)
+    {{-- @isset($item->metaInfo->equip->equipTradeBlock)
         <li>
             {{ $item->metaInfo->equip->equipTradeBlock == 1 ? 'This item can not be traded after being equipped.' : '' }}
         </li>
