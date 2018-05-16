@@ -2,9 +2,10 @@
 window.$ = window.jQuery = require('jquery');
 
 // Dependencies
-require('./fontawesome.min');
-require('./solid')
-require('./brands')
+require('./fontawesome');
+require('./fa-solid')
+require('./fa-brands')
+require('./fa-light')
 window.Popper = window.Popper ? window.Popper : require('./popper');
 require('bootstrap');
 
