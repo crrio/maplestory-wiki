@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $item->description->name)
+@section('desc', 'Discover information, statistics, and much more about the item '.$item->description->name.'.')
 @section('image', 'http://maplestory.io/api/gms/latest/item/'.$item->id.'/icon?resize=5')
 
 @section('css')
