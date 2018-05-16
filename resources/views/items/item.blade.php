@@ -93,10 +93,10 @@ table tr td:first-child {
     @endisset
         <div class='itemName title'>
             <span class="name display-4">{{ $item->description->name }}</span><br/>
-            <span class="category"><span class="badge badge-primary">{{ $item->typeInfo->overallCategory }}</span> <span class="badge badge-primary">{{ $item->typeInfo->category }} ({{ $item->typeInfo->subCategory }})</span></span>
-@isset($item->description->description)
-            <span>{!! ParseMapleString($item->description->description) !!}</span>
-@endisset
+            <span class="category"><span class="badge badge-primary font-weight-normal">{{ $item->typeInfo->overallCategory }}</span> <span class="badge badge-primary font-weight-normal">{{ $item->typeInfo->category }} ({{ $item->typeInfo->subCategory }})</span></span>
+            @isset($item->description->description)
+                        <span>{!! ParseMapleString($item->description->description) !!}</span><br/>
+            @endisset
         </div>
     </header>
 
@@ -104,15 +104,32 @@ table tr td:first-child {
         @isset($item->metaInfo->equip)
         @component('items.equip-info', ['item' => $item])
         @endcomponent
+        @endisset
+
+        @isset($item->metaInfo->slot)
+            <span class="mr-1 badge badge-light no-ms-font font-weight-normal"><b>Max per slot:</b> {{ $item->metaInfo->slot->slotMax }} items</span>
+        @endisset
+
+        @isset($item->metaInfo->shop)
+            <span class="mr-1 badge badge-light no-ms-font font-weight-normal">
+                <b>Sold for:</b> {{ $item->metaInfo->shop->price }} mesos
+                @isset($item->metaInfo->shop->notSale)
+                    (but selling is disabled)
+                @endisset
+            </span>
+        @endisset
+        <br/>
+        <a class="btn btn-soft btn-sm mt-3" href="//maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->id}}" target="_blank">
+            <i class="fal fa-code"></i> View API Request
+        </a>
+
+        @isset($item->metaInfo->equip)
         @isset($item->frameBooks)
         <section class="equipImagesContainer">
             <b class='title mb-3'>
                 Preview
                 <a class="btn btn-soft btn-sm" data-toggle="collapse" href="#framebookexpand" aria-expanded="false" aria-controls="framebookexpand">
                     View Technical Details
-                </a>
-                <a class="btn btn-soft btn-sm" href="//maplestory.io/api/{{$region}}/{{$version}}/item/{{$item->id}}" target="_blank">
-                    View API Request
                 </a>
             </b>
             <div class='preview'>
