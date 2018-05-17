@@ -113,9 +113,15 @@ table tr td:first-child {
 
         @isset($item->metaInfo->shop)
             <span class="mr-1 badge badge-light no-ms-font font-weight-normal">
-                <b>Sold for:</b> {{ $item->metaInfo->shop->price }} mesos
+                <b>Sold for:</b>
+                @isset($item->metaInfo->shop->price)
+                {{ $item->metaInfo->shop->price }} 
+                @else
+                0 
+                @endisset
+                mesos
                 @isset($item->metaInfo->shop->notSale)
-                    (but selling is disabled)
+                    (selling is disabled)
                 @endisset
             </span>
         @endisset
