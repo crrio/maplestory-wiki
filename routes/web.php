@@ -86,14 +86,14 @@ Route::get('/{region}/{version}/items', function (Request $request, $region, $ve
     $itemList = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item?' . $queryJoined));
     $categories = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/category'));
 
-    return view('items.itemlist', [
+    return view('items.items', [
         'items' => $itemList,
         'oldQuery' => $oldData,
         'categories' => $categories,
         'region' => $region,
         'version' => $version
     ]);
-});
+})->name('items');
 
 Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
     $itemData = @file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id);
@@ -110,6 +110,48 @@ Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
         'version' => $version
     ]);
 });
+
+Route::get('/{region}/{version}/mobs', function (Request $request, $region, $version) {
+    $query = [];
+    $oldData = [];
+
+    $position = $request->query('position');
+    if (isset($position)) {
+        $query[] = 'startPosition=' . urlencode($position);
+        $oldData['position'] = $position;
+    }
+    $count = $request->query('count') ?? '50';
+    if (isset($count)) {
+        $query[] = 'count=' . urlencode($count);
+        $oldData['count'] = $count;
+    }
+    $minLevel = $request->query('minLevel');
+    if (isset($minLevel)) {
+        $query[] = 'minLevelFilter=' . urlencode($minLevel);
+        $oldData['minLevel'] = $minLevel;
+    }
+    $maxLevel = $request->query('maxLevel');
+    if (isset($maxLevel)) {
+        $query[] = 'maxLevelFilter=' . urlencode($maxLevel);
+        $oldData['maxLevel'] = $maxLevel;
+    }
+    $search = $request->query('search');
+    if (isset($search)) {
+        $query[] = 'searchFor=' . urlencode($search);
+        $oldData['search'] = $search;
+    }
+
+    $queryJoined = implode('&', $query);
+
+    $mobList = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob?' . $queryJoined));
+
+    return view('mobs.mobs', [
+        'mobs' => $mobList,
+        'oldQuery' => $oldData,
+        'region' => $region,
+        'version' => $version
+    ]);
+})->name('mobs');
 
 Route::get('/{region}/{version}/mob/{id}', function ($region, $version, $id) {
     $mobData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob/'. $id));

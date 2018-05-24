@@ -32,20 +32,14 @@ form label {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 8px;
+    padding-left: 10px;
 }
 
-#minLevel input, #maxLevel input {
-    max-width: 100px;
+input[type="number"] {
+    max-width: 150px;
 }
 
-.center-form {
-    text-align: center;
-    padding: 8px 0;
-}
-
-input[type="number"], input[type="text"], input[type="reset"], input[type="submit"], select {
-    padding: 6px;
+input[type="number"], input[type="text"], select {
     background: rgba(0, 0, 0, 0.4);
     border: 0px none transparent;
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.8);
@@ -65,13 +59,11 @@ input[type="number"], input[type="text"], input[type="reset"], input[type="submi
     -ms-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    padding: .5rem .75rem;
     font-size: 1rem;
     line-height: 1.25;
     border-radius: .25rem;
 }
 .search-box {
-    display: inline-block;
     font-weight: 400;
     white-space: nowrap;
     -webkit-user-select: none;
@@ -81,70 +73,86 @@ input[type="number"], input[type="text"], input[type="reset"], input[type="submi
     font-size: 1rem;
     line-height: 1.25;
     border-radius: .25rem;
+    display: inline-block;
 }
 
 input[type="reset"], input[type="submit"] {
-    margin: 8px;
+    margin-left: 8px;
 }
 
-.count {
-    width: 125px;
-    height: 37px;
+.search {
+    width: 100px;
+}
+
+.cog {
+    position: relative;
+    top: -48px;
 }
 </style>
 @endsection
 
+@section('searchoptions')
+<a class="btn btn-primary btn-sm float-right mt-2 mr-2 cog" data-toggle="collapse" href="#searchControls" role="button" aria-expanded="false" aria-controls="searchControls">
+    <i class="fa fa-cog"></i>
+</a>
+<div class="collapse pl-2 pr-2 pb-2 pt-0" id="searchControls">
+    <select name='count' class="count ml-2">
+            <option value='10' {{ (($oldQuery['count'] ?? 0) == 10) ? 'selected' : '' }}>10 Items</option>
+            <option value='25' {{ (($oldQuery['count'] ?? 0) == 25) ? 'selected' : '' }}>25 Items</option>
+            <option value='50' {{ (($oldQuery['count'] ?? 0) == 50) ? 'selected' : '' }}>50 Items</option>
+            <option value='100' {{ (($oldQuery['count'] ?? 0) == 100) ? 'selected' : '' }}>100 Items</option>
+            <option value='250' {{ (($oldQuery['count'] ?? 0) == 250) ? 'selected' : '' }}>250 Items</option>
+    </select>
+    <label id='minLevel' for="minLevel">
+        <span>Min Level</span>
+    </label>
+    <input type='number' name='minLevel' value='{{$oldQuery['minLevel'] ?? ''}}' min="1" max="250" />
+    
+    <label id='maxLevel'>
+        <span>Max Level</span>
+    </label>
+    <input type='number' name='maxLevel' value='{{$oldQuery['maxLevel'] ?? ''}}' min="1" max="250" />
+
+    <label id='job'>
+        <span>Job</span>
+    </label>
+    <select name='job'>
+        <option value=''>Any</option>
+        <option value='0' {{ (isset($oldQuery['job']) && in_array('0', $oldQuery['job']) ? 'selected' : '') }}>Beginner</option>
+        <option value='1' {{ (isset($oldQuery['job']) && in_array('1', $oldQuery['job']) ? 'selected' : '') }}>Warrior</option>
+        <option value='2' {{ (isset($oldQuery['job']) && in_array('2', $oldQuery['job']) ? 'selected' : '') }}>Magician</option>
+        <option value='4' {{ (isset($oldQuery['job']) && in_array('4', $oldQuery['job']) ? 'selected' : '') }}>Bowman</option>
+        <option value='8' {{ (isset($oldQuery['job']) && in_array('8', $oldQuery['job']) ? 'selected' : '') }}>Thief</option>
+        <option value='16' {{ (isset($oldQuery['job']) && in_array('16', $oldQuery['job']) ? 'selected' : '') }}>Pirate</option>
+    </select>
+
+    <label id='cash'>
+        <span>Cash Item?</span>
+    </label>
+    <input type='checkbox' name='cash' {{ ($oldQuery['cash'] ? 'checked' : '') }} />
+
+    <div class='categoryContainer'></div>
+    <input type='reset' value='Reset' class="btn btn-danger btn-sm mt-2"/>
+    <input type='submit' value='Apply' class="btn btn-success btn-sm mt-2"/>
+</div>
+@endsection
+
 @section('content')
 <form method='get' action='/{{$region}}/{{$version}}/items'>
-    <h3>
-        Items <a href='/gms/latest/items' class="btn btn-soft">English</a> <a href='/kms/latest/items' class="btn btn-soft">한국어</a> <a href='/jms/latest/items' class='btn btn-soft'>日本語</a> <a href='/cms/latest/items' class='btn btn-soft'>中文</a>
-        <span class="float-right search-box">
-            <i class="fa fa-search fa-fw"></i>
-            <input type='text' name='search' value='{{$oldQuery['search'] ?? ''}}'/>
-            <select name='count' class="count">
-                <option value='10' {{ (($oldQuery['count'] ?? 0) == 10) ? 'selected' : '' }}>10 Items</option>
-                <option value='25' {{ (($oldQuery['count'] ?? 0) == 25) ? 'selected' : '' }}>25 Items</option>
-                <option value='50' {{ (($oldQuery['count'] ?? 0) == 50) ? 'selected' : '' }}>50 Items</option>
-                <option value='100' {{ (($oldQuery['count'] ?? 0) == 100) ? 'selected' : '' }}>100 Items</option>
-                <option value='250' {{ (($oldQuery['count'] ?? 0) == 250) ? 'selected' : '' }}>250 Items</option>
-                <option value='500' {{ (($oldQuery['count'] ?? 0) == 500) ? 'selected' : '' }}>250 Items</option>
-            </select>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fa fa-cog"></i>
+    <div class="justify-content-between">
+        <h2 class="mb-0">
+            Items
+            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-language"></i>
             </a>
-        </span>
-    </h3>
-    <div class="collapse" id="collapseExample">
-        <div class='center-form'>
-            <label id='minLevel'>
-                <span>Min Level</span>
-                <input type='number' name='minLevel' value='{{$oldQuery['minLevel'] ?? ''}}' min="1" max="250" />
-            </label>
-            <label id='maxLevel'>
-                <span>Max Level</span>
-                <input type='number' name='maxLevel' value='{{$oldQuery['maxLevel'] ?? ''}}' min="1" max="250" />
-            </label>
-            <label id='job'>
-                <span>Job</span>
-                <select name='job'>
-                    <option></option>
-                    <option value='0' {{ (isset($oldQuery['job']) && in_array('0', $oldQuery['job']) ? 'selected' : '') }}>Beginner</option>
-                    <option value='1' {{ (isset($oldQuery['job']) && in_array('1', $oldQuery['job']) ? 'selected' : '') }}>Warrior</option>
-                    <option value='2' {{ (isset($oldQuery['job']) && in_array('2', $oldQuery['job']) ? 'selected' : '') }}>Magician</option>
-                    <option value='4' {{ (isset($oldQuery['job']) && in_array('4', $oldQuery['job']) ? 'selected' : '') }}>Bowman</option>
-                    <option value='8' {{ (isset($oldQuery['job']) && in_array('8', $oldQuery['job']) ? 'selected' : '') }}>Thief</option>
-                    <option value='16' {{ (isset($oldQuery['job']) && in_array('16', $oldQuery['job']) ? 'selected' : '') }}>Pirate</option>
-                </select>
-            </label>
-            <div class='categoryContainer'>
-                <label id='cash'>
-                    <span>Cash Filter</span>
-                    <input type='checkbox' name='cash' {{ ($oldQuery['cash'] ? 'checked' : '') }} />
-                </label>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a href='/gms/latest/items' class="dropdown-item">English</a> 
+                <a href='/kms/latest/items' class="dropdown-item">한국어</a> 
+                <a href='/jms/latest/items' class='dropdown-item'>日本語</a> 
+                <a href='/cms/latest/items' class='dropdown-item'>中文</a>
             </div>
-            <input type='reset' value='Restore filter' />
-            <input type='submit' value='Apply filter' />
-        </div>
+        </h2>
+        <p class="lead">In the Maple World, the equipment and items you discover along your adventures matter. View complete details or simply preview how that shiny new <a href="/{{ $region }}/{{ $version }}/item/1302020">Maple Sword</a> looks via our wiki.</p>
     </div>
 </form>
 
@@ -320,7 +328,7 @@ $(document).ready(function () {
             layoutMode: 'masonry',
             masonry: {
             gutter: 0,
-            columnWidth: .size
+            columnWidth: '.size',
             }
         });
     </script>

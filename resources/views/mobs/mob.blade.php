@@ -7,31 +7,7 @@
 @section('css')
 <style>
 table tr td:first-child {
-    text-align: right;
-    padding-right: 5px;
-}
-
-section, header {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-section {
-    align-items: center;
-    padding: 0 16px;
-}
-
-.previewController {
-    display: flex;
-    justify-content: space-around;
-}
-
-.preview {
-    float: right;
-}
-
-.foundAt, .drops {
-    max-width: 397px;
+    padding-right: 10px;
 }
 
 .drops li {
@@ -50,223 +26,233 @@ section {
     float: left;
     flex-shrink: 0;
 }
+
+.mobInfo {
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #FFF;
+}
 </style>
 @endsection
 
 @section('content')
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/mobs">Mobs</a></li>
+    <li class="breadcrumb-item active">{{ $mob->name }}</li>
+</ol>
 <header class="primaryInfo">
-    <b>Mob</b>
     <div class='itemName title'>
-        <span class="name">{{ $mob->name }}</span><br/>
-        @isset($mob->description)
-        <span class='desc'>{!! nl2br(str_replace(array('\r', '\n'), array("\r", "\n"), $mob->description)) !!}</span>
+            <img src='http://maplestory.io/api/gms/latest/mob/{{ $mob->id }}/icon?resize=3' style="max-width:250px;image-rendering: pixelated;margin:20px;float:right;display:block;z-index:1999;" class=" d-none d-lg-block"/>
+        <span class="name display-4">{{ $mob->name }}</span><br/>
+        @isset($mob->meta->level)
+            <span class="badge badge-primary font-weight-normal">Level {{$mob->meta->level}}</span>
         @endisset
-        </div>
+        @isset($mob->meta->exp)
+            <span class="badge badge-success font-weight-normal">{{ number_format($mob->meta->exp) }} Exp</span>
+        @endisset
+    </div>
 </header>
 
-<div>
-    <section>
-        <b class='title'>Info</b>
-        <table>
-    @isset($mob->meta->isBodyAttack)
-        <tr><td>Can physical attack you</td><td>{{$mob->meta->isBodyAttack == 1 ? 'True' : 'False'}}</td></tr>
-    @endisset
-    @isset($mob->meta->level)
-        <tr><td>Level.</td><td>{{$mob->meta->level}}</td></tr>
-    @endisset
-    @isset($mob->meta->maxHp)
-        <tr><td>Max HP</td><td>{{$mob->meta->maxHp}}</td></tr>
-    @endisset
-    @isset($mob->meta->maxMp)
-        <tr><td>Max MP</td><td>{{$mob->meta->maxMp}}</td></tr>
-    @endisset
-    @isset($mob->meta->speed)
-        <tr><td>Movement speed</td><td>{{$mob->meta->speed}}</td></tr>
-    @endisset
-    @isset($mob->meta->flySpeed)
-        <tr><td>Flying speed</td><td>{{$mob->meta->flySpeed}}</td></tr>
-    @endisset
-    @isset($mob->meta->physicalDamage)
-        <tr><td>Physical attack damage</td><td>{{$mob->meta->physicalDamage}}</td></tr>
-    @endisset
-    @isset($mob->meta->physicalDefense)
-        <tr><td>Physical defense</td><td>{{$mob->meta->physicalDefense}}</td></tr>
-    @endisset
-    @isset($mob->meta->magicDamage)
-        <tr><td>Magical Attack Damage</td><td>{{$mob->meta->magicDamage}}</td></tr>
-    @endisset
-    @isset($mob->meta->magicDefense)
-        <tr><td>Magical Attack Defense</td><td>{{$mob->meta->magicDefense}}</td></tr>
-    @endisset
-    @isset($mob->meta->accuracy)
-        <tr><td>Accuracy</td><td>{{$mob->meta->accuracy}}</td></tr>
-    @endisset
-    @isset($mob->meta->evasion)
-        <tr><td>Evasion</td><td>{{$mob->meta->evasion}}</td></tr>
-    @endisset
-    @isset($mob->meta->exp)
-        <tr><td>Experience</td><td>{{$mob->meta->exp}}</td></tr>
-    @endisset
-    @isset($mob->meta->isUndead)
-        <tr><td>Is undead</td><td>{{$mob->meta->isUndead == 1 ? 'True' : 'False'}}</td></tr>
-    @endisset
-    @isset($mob->meta->minimumPushDamage)
-        <tr><td>Min damage to knockback</td><td>{{$mob->meta->minimumPushDamage}}</td></tr>
-    @endisset
-    @isset($mob->meta->hpRecovery)
-        <tr><td>HP recovered</td><td>{{$mob->meta->hpRecovery}}</td></tr>
-    @endisset
-    @isset($mob->meta->mpRecovery)
-        <tr><td>MP recovered</td><td>{{$mob->meta->mpRecovery}}</td></tr>
-    @endisset
-    @isset($mob->meta->elementalAttributes)
-        @foreach(explode('-', trim(chunk_split(trim($mob->meta->elementalAttributes), 2, '-'), '-')) as $elemental)
+<div class='mobInfo'>
+    <ul class="list-unstyled">
+        @isset($mob->meta->isBodyAttack)
+            <li><td>Can physical attack you</td><td>{{$mob->meta->isBodyAttack == 1 ? 'True' : 'False'}}</td></li>
+        @endisset
+        @isset($mob->meta->maxHp)
+            <li><td>Max HP</td><td>{{$mob->meta->maxHp}}</td></li>
+        @endisset
+        @isset($mob->meta->maxMp)
+            <li><td>Max MP</td><td>{{$mob->meta->maxMp}}</td></li>
+        @endisset
+        @isset($mob->meta->speed)
+            <li><td>Movement speed</td><td>{{$mob->meta->speed}}</td></li>
+        @endisset
+        @isset($mob->meta->flySpeed)
+            <li><td>Flying speed</td><td>{{$mob->meta->flySpeed}}</td></li>
+        @endisset
+        @isset($mob->meta->physicalDamage)
+            <li><td>Physical attack damage</td><td>{{$mob->meta->physicalDamage}}</td></li>
+        @endisset
+        @isset($mob->meta->physicalDefense)
+            <li><td>Physical defense</td><td>{{$mob->meta->physicalDefense}}</td></li>
+        @endisset
+        @isset($mob->meta->magicDamage)
+            <li><td>Magical Attack Damage</td><td>{{$mob->meta->magicDamage}}</td></li>
+        @endisset
+        @isset($mob->meta->magicDefense)
+            <li><td>Magical Attack Defense</td><td>{{$mob->meta->magicDefense}}</td></li>
+        @endisset
+        @isset($mob->meta->accuracy)
+            <li><td>Accuracy</td><td>{{$mob->meta->accuracy}}</td></li>
+        @endisset
+        @isset($mob->meta->evasion)
+            <li><td>Evasion</td><td>{{$mob->meta->evasion}}</td></li>
+        @endisset
+        @isset($mob->meta->isUndead)
+            <li><td>Is undead</td><td>{{$mob->meta->isUndead == 1 ? 'True' : 'False'}}</td></li>
+        @endisset
+        @isset($mob->meta->minimumPushDamage)
+            <li><td>Min damage to knockback</td><td>{{$mob->meta->minimumPushDamage}}</td></li>
+        @endisset
+        @isset($mob->meta->hpRecovery)
+            <li><td>HP recovered</td><td>{{$mob->meta->hpRecovery}}</td></li>
+        @endisset
+        @isset($mob->meta->mpRecovery)
+            <li><td>MP recovered</td><td>{{$mob->meta->mpRecovery}}</td></li>
+        @endisset
+        @isset($mob->meta->elementalAttributes)
+            @foreach(explode('-', trim(chunk_split(trim($mob->meta->elementalAttributes), 2, '-'), '-')) as $elemental)
 
-        @php
-            $elementalChar = substr($elemental, 0, 1);
-            $elementalName = $elemental;
-            switch($elementalChar) {
-                case 'H': $elementalName = 'Holy'; break;
-                case 'P': $elementalName = 'Poison'; break;
-                case 'F': $elementalName = 'Fire'; break;
-                case 'I': $elementalName = 'Ice'; break;
-                case 'L': $elementalName = 'Lightning'; break;
-                case 'D': $elementalName = 'Dark'; break;
-                case 'S': $elementalName = 'Physical'; break;
-            }
+            @php
+                $elementalChar = substr($elemental, 0, 1);
+                $elementalName = $elemental;
+                switch($elementalChar) {
+                    case 'H': $elementalName = 'Holy'; break;
+                    case 'P': $elementalName = 'Poison'; break;
+                    case 'F': $elementalName = 'Fire'; break;
+                    case 'I': $elementalName = 'Ice'; break;
+                    case 'L': $elementalName = 'Lightning'; break;
+                    case 'D': $elementalName = 'Dark'; break;
+                    case 'S': $elementalName = 'Physical'; break;
+                }
 
-            $elementalAttribute = substr($elemental, 1, 1);
-            switch($elementalAttribute) {
-                case '1': $elementalAttributeModifier = 'Immune'; break;
-                case '2': $elementalAttributeModifier = 'Strong'; break;
-                case '3': $elementalAttributeModifier = 'Weak'; break;
-                default: $elementalAttributeModifier = 'Neutral'; break;
-            }
-        @endphp
+                $elementalAttribute = substr($elemental, 1, 1);
+                switch($elementalAttribute) {
+                    case '1': $elementalAttributeModifier = 'Immune'; break;
+                    case '2': $elementalAttributeModifier = 'Strong'; break;
+                    case '3': $elementalAttributeModifier = 'Weak'; break;
+                    default: $elementalAttributeModifier = 'Neutral'; break;
+                }
+            @endphp
 
-        <tr><td>
-            {{$elementalAttributeModifier}} against
-        </td><td>
-            {{$elementalName}}
-        </td></tr>
-        @endforeach
-    @endisset
-    @isset($mob->meta->summonType)
-        <tr><td>Summons other monsters</td><td>{{$mob->meta->summonType}}</td></tr>
-    @endisset
-    @isset($mob->meta->hpTagColor)
-        <tr><td>HP gauge Tag</td><td>{{$mob->meta->hpTagColor}}</td></tr>
-    @endisset
-    @isset($mob->meta->hpTagBackgroundColor)
-        <tr><td>HP gauge Tag background</td><td>{{$mob->meta->hpTagBackgroundColor}}</td></tr>
-    @endisset
-    @isset($mob->meta->hpGaugeHide)
-        <tr><td>HP gauge should be hidden</td><td>{{$mob->meta->hpGaugeHide}}</td></tr>
-    @endisset
-    @isset($mob->meta->noRespawn)
-        <tr><td>Will respawn upon death</td><td>{{$mob->meta->noRespawn}}</td></tr>
-    @endisset
-    @isset($mob->meta->revivesMonsterId)
-        <tr><td>Spawn these mobs after death</td><td><ul>{!! implode(array_map(function ($mob) { return '<li><a href=\'/mob/'.$mob->id.'\'>'.$mob->name.'</a></li>'; }, $mob->meta->revivesMonsterId),'') !!}</ul></td></tr>
-    @endisset
-    @isset($mob->meta->linksToOtherMob)
-        <tr><td colspan='2'><a href='/{{$region}}/{{$version}}/mob/{{$mob->meta->linksToOtherMob}}'>Mimics other mob</a></td></tr>
-    @endisset
-    @isset($mob->meta->onlyNormalAttack)
-        <tr><td>Only normal attacks</td><td>{{$mob->meta->onlyNormalAttack}}</td></tr>
-    @endisset
-    @isset($mob->meta->fixedDamageAmount)
-        <tr><td>Damage per line</td><td>{{$mob->meta->fixedDamageAmount}}</td></tr>
-    @endisset
-    @isset($mob->meta->isBoss)
-        <tr><td>Is a boss</td><td>{{$mob->meta->isBoss == 1 ? 'True' : 'False'}}</td></tr>
-    @endisset
-    @isset($mob->meta->isAutoAggro)
-        <tr><td>Auto aggro</td><td>{{$mob->meta->isAutoAggro == 1 ? 'True' : 'False'}}</td></tr>
-    @endisset
-    @isset($mob->meta->publicReward)
-        <tr><td>Item drops are public</td><td>{{$mob->meta->publicReward}}</td></tr>
-    @endisset
-    @isset($mob->meta->explosiveReward)
-        <tr><td>Explosive drops</td><td>{{$mob->meta->explosiveReward}}</td></tr>
-    @endisset
-    @isset($mob->meta->isInvincible)
-        <tr><td>Is invincible</td><td>{{$mob->meta->isInvincible == 1 ? 'True' : 'False'}}</td></tr>
-    @endisset
-    @isset($mob->meta->noAttack)
-        <tr><td>Monster can not attack you but you can attack it</td><td>{{$mob->meta->noAttack}}</td></tr>
-    @endisset
-    @isset($mob->meta->removeAfterTime)
-        <tr><td>Despawns after</td><td>{{$mob->meta->removeAfterTime}}</td></tr>
-    @endisset
-    @isset($mob->meta->buffId)
-        <tr><td>Buff given when killed</td><td>{{$mob->meta->buffId}}</td></tr>
-    @endisset
-    @isset($mob->meta->hideName)
-        <tr><td>Hides the name</td><td>{{$mob->meta->hideName}}</td></tr>
-    @endisset
-    @isset($mob->meta->monsterBookId)
-        <tr><td>Monster book ID</td><td>{{$mob->meta->monsterBookId}}</td></tr>
-    @endisset
-    @isset($mob->meta->physicalDefenseRate)
-        <tr><td>PDR</td><td>{{$mob->meta->physicalDefenseRate}}</td></tr>
-    @endisset
-    @isset($mob->meta->magicDefenseRate)
-        <tr><td>MDR</td><td>{{$mob->meta->magicDefenseRate}}</td></tr>
-    @endisset
-        </table>
-    </section>
-
-    <section class='preview'>
-        <b class='title'>Preview</b>
-
-        <div>
-            <div class='previewControls'>
-                <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/render" />
-                {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
-                <div class='previewController'>
-                <select class='framebookSelector'>
-                @foreach($mob->framebooks as $animation => $frames)
-                    <option value='{{$animation}}'>{{$animation}}</option>
-                @endforeach
-                </select>
-                </div>
-            </div>
-
-            @foreach($mob->framebooks as $animation => $frames)
-                <div class='framebook' id='{{$animation}}' style='display: none;'>
-                    <select class='frameSelector' style='display: none;' for='{{$animation}}'>
-                    @for($frameNumber = 0; $frameNumber < $frames; ++$frameNumber)
-                        <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
-                    @endfor
-                    </select>
-                </div>
+            <li><td>
+                {{$elementalAttributeModifier}} against
+            </td><td>
+                {{$elementalName}}
+            </td></li>
             @endforeach
-        </div>
-    </section>
-
-    @if(count($mob->foundAt) > 0)
-    <section class='foundAt'>
-        <b class='title'>Found at</b>
-        <ul>
-        @foreach($mob->foundAt as $mapEntry)
-            <li><a href='/{{$region}}/{{$version}}/map/{{$mapEntry->id}}'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a></li>
-        @endforeach
-        </ul>
-    </section>
-    @endif
-
-    @if(isset($mob->drops) && count($mob->drops) > 0)
-    <section class='drops'>
-        <b class='title'>Drops</b>
-        <ul>
-        @foreach($mob->drops as $drop)
-            <li><a href='/{{$region}}/{{$version}}/item/{{$drop->id}}'><img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$drop->id}}/icon' />{{$drop->name}}</a></li>
-        @endforeach
-        </ul>
-    </section>
-    @endif
+        @endisset
+        @isset($mob->meta->summonType)
+            <li><td>Summons other monsters</td><td>{{$mob->meta->summonType}}</td></li>
+        @endisset
+        @isset($mob->meta->hpTagColor)
+            <li><td>HP gauge Tag</td><td>{{$mob->meta->hpTagColor}}</td></li>
+        @endisset
+        @isset($mob->meta->hpTagBackgroundColor)
+            <li><td>HP gauge Tag background</td><td>{{$mob->meta->hpTagBackgroundColor}}</td></li>
+        @endisset
+        @isset($mob->meta->hpGaugeHide)
+            <li><td>HP gauge should be hidden</td><td>{{$mob->meta->hpGaugeHide}}</td></li>
+        @endisset
+        @isset($mob->meta->noRespawn)
+            <li><td>Will respawn upon death</td><td>{{$mob->meta->noRespawn}}</td></li>
+        @endisset
+        @isset($mob->meta->revivesMonsterId)
+            <li><td>Spawn these mobs after death</td><td><ul>{!! implode(array_map(function ($mob) { return '<li><a href=\'/mob/'.$mob->id.'\'>'.$mob->name.'</a></li>'; }, $mob->meta->revivesMonsterId),'') !!}</ul></td></li>
+        @endisset
+        @isset($mob->meta->linksToOtherMob)
+            <li><td colspan='2'><a href='/{{$region}}/{{$version}}/mob/{{$mob->meta->linksToOtherMob}}'>Mimics other mob</a></td></li>
+        @endisset
+        @isset($mob->meta->onlyNormalAttack)
+            <li><td>Only normal attacks</td><td>{{$mob->meta->onlyNormalAttack}}</td></li>
+        @endisset
+        @isset($mob->meta->fixedDamageAmount)
+            <li><td>Damage per line</td><td>{{$mob->meta->fixedDamageAmount}}</td></li>
+        @endisset
+        @isset($mob->meta->isBoss)
+            <li><td>Is a boss</td><td>{{$mob->meta->isBoss == 1 ? 'True' : 'False'}}</td></li>
+        @endisset
+        @isset($mob->meta->isAutoAggro)
+            <li><td>Auto aggro</td><td>{{$mob->meta->isAutoAggro == 1 ? 'True' : 'False'}}</td></li>
+        @endisset
+        @isset($mob->meta->publicReward)
+            <li><td>Item drops are public</td><td>{{$mob->meta->publicReward}}</td></li>
+        @endisset
+        @isset($mob->meta->explosiveReward)
+            <li><td>Explosive drops</td><td>{{$mob->meta->explosiveReward}}</td></li>
+        @endisset
+        @isset($mob->meta->isInvincible)
+            <li><td>Is invincible</td><td>{{$mob->meta->isInvincible == 1 ? 'True' : 'False'}}</td></li>
+        @endisset
+        @isset($mob->meta->noAttack)
+            <li><td>Monster can not attack you but you can attack it</td><td>{{$mob->meta->noAttack}}</td></li>
+        @endisset
+        @isset($mob->meta->removeAfterTime)
+            <li><td>Despawns after</td><td>{{$mob->meta->removeAfterTime}}</td></li>
+        @endisset
+        @isset($mob->meta->buffId)
+            <li><td>Buff given when killed</td><td>{{$mob->meta->buffId}}</td></li>
+        @endisset
+        @isset($mob->meta->hideName)
+            <li><td>Hides the name</td><td>{{$mob->meta->hideName}}</td></li>
+        @endisset
+        @isset($mob->meta->monsterBookId)
+            <li><td>Monster book ID</td><td>{{$mob->meta->monsterBookId}}</td></li>
+        @endisset
+        @isset($mob->meta->physicalDefenseRate)
+            <li><td>PDR</td><td>{{$mob->meta->physicalDefenseRate}}</td></li>
+        @endisset
+        @isset($mob->meta->magicDefenseRate)
+            <li><td>MDR</td><td>{{$mob->meta->magicDefenseRate}}</td></li>
+        @endisset
+    </ul>
 </div>
+
+<a class="btn btn-soft btn-sm mt-3" href="//maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}" target="_blank">
+    <i class="fal fa-code"></i> View API Request
+</a>
+    <div class="row mt-3">
+        @if(count($mob->foundAt) > 0)
+            <div class="col-md-4">
+                <span class="lead">Located at</span>
+                <section class='foundAt' class="list-group">
+                    @foreach($mob->foundAt as $mapEntry)
+                        <a href='/{{$region}}/{{$version}}/map/{{$mapEntry->id}}' class='list-group-item list-group-item-action'>{{$mapEntry->name}} ({{$mapEntry->streetName}})</a>
+                    @endforeach
+                    </ul>
+                </section>
+            </div>
+        @endif
+
+        @if(isset($mob->drops) && count($mob->drops) > 0)
+            <div class="col-md-4">
+                <span class="lead">Drops <span class="badge badge-info">Not 100% Accurate</span></span>
+                <section class='drops' class="list-group">
+                    @foreach($mob->drops as $drop)
+                        <a href='/{{$region}}/{{$version}}/item/{{$drop->id}}' class='list-group-item list-group-item-action'><img src='https://labs.maplestory.io/api/{{$region}}/{{$version}}/item/{{$drop->id}}/icon' />{{$drop->name}}</a>
+                    @endforeach
+                </section>
+            </div>
+        @endif
+
+            <div class="col-md-4">
+                <span class="lead">Preview</span>
+                <div class='previewControls mt-4'>
+                    <img src="https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/render/{{array_keys(get_object_vars($mob->framebooks))[0]}}" appendFramebook="https://labs.maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/render" />
+                    {{-- Uglify the framebooks so they can presented to the user in a reasonable and consumeable manner --}}
+                    <div class='previewController mt-3'>
+                    <select class='framebookSelector'>
+                    @foreach($mob->framebooks as $animation => $frames)
+                        <option value='{{$animation}}'>{{$animation}}</option>
+                    @endforeach
+                    </select>
+                    </div>
+                </div>
+
+                @foreach($mob->framebooks as $animation => $frames)
+                    <div class='framebook' id='{{$animation}}' style='display: none;'>
+                        <select class='frameSelector' style='display: none;' for='{{$animation}}'>
+                        @for($frameNumber = 0; $frameNumber < $frames; ++$frameNumber)
+                            <option value='{{$frameNumber}}'>Frame {{$frameNumber}}</option>
+                        @endfor
+                        </select>
+                    </div>
+                @endforeach
+            </div>
+    </div>
 @endsection
 
 @section('js')
