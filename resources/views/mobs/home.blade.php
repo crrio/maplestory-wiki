@@ -164,26 +164,41 @@ input[type="reset"], input[type="submit"] {
         </div>
     </div>
     <div class="list-group mt-4">
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=1&maxLevel=10" class="list-group-item list-group-item-action">
-            Level 1-10
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=1&maxLevel=10" class="list-group-item list-group-item-action">
+            Level 1 - 10
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=11&maxLevel=20" class="list-group-item list-group-item-action">
-            Level 11-20
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=11&maxLevel=20" class="list-group-item list-group-item-action">
+            Level 11 - 20
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=21&maxLevel=30" class="list-group-item list-group-item-action d-none">
-            Level 21-30
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=21&maxLevel=30" class="list-group-item list-group-item-action">
+            Level 21 - 30
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=31&maxLevel=40" class="list-group-item list-group-item-action d-none">
-            Level 31-40
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=31&maxLevel=40" class="list-group-item list-group-item-action">
+            Level 31 - 40
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=41&maxLevel=50" class="list-group-item list-group-item-action d-none">
-            Level 41-50
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=41&maxLevel=50" class="list-group-item list-group-item-action">
+            Level 41 - 50
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=51&maxLevel=70" class="list-group-item list-group-item-action d-none">
-            Level 51-70
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=51&maxLevel=70" class="list-group-item list-group-item-action">
+            Level 51 - 70
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=50&minLevel=71&maxLevel=100" class="list-group-item list-group-item-action d-none">
-            Level 71-100
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=71&maxLevel=99" class="list-group-item list-group-item-action">
+            Level 71 - 99
+        </a>
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=100&maxLevel=120" class="list-group-item list-group-item-action">
+            Level 100 - 120
+        </a>
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=121&maxLevel=140" class="list-group-item list-group-item-action">
+            Level 121 - 140
+        </a>
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=141&maxLevel=160" class="list-group-item list-group-item-action">
+            Level 141 - 160
+        </a>
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=161&maxLevel=199" class="list-group-item list-group-item-action">
+            Level 161 - 199
+        </a>
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=200" class="list-group-item list-group-item-action">
+            Level 200+
         </a>
         <a href="/{{$region}}/{{$version}}/monsters/" class="list-group-item list-group-item-action">
             <img src="https://maplestory.io/api/gms/latest/mob/100100/icon" class="mob-icon">
