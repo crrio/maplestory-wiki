@@ -17,6 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/{region}/{version}/items/home', function (Request $request, $region, $version) {
+    $categories = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/category'));
+
+    return view('items.home', [
+        'categories' => $categories,
+        'region' => $region,
+        'version' => $version
+    ]);
+})->name('items-home');
+
 Route::get('/{region}/{version}/items', function (Request $request, $region, $version) {
     $query = [];
     $oldData = [];
@@ -109,9 +119,16 @@ Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
         'region' => $region,
         'version' => $version
     ]);
-});
+})->name('item');
 
-Route::get('/{region}/{version}/mobs', function (Request $request, $region, $version) {
+Route::get('/{region}/{version}/monsters/home', function (Request $request, $region, $version) {
+    return view('mobs.home', [
+        'region' => $region,
+        'version' => $version
+    ]);
+})->name('mobs-home');
+
+Route::get('/{region}/{version}/monsters', function (Request $request, $region, $version) {
     $query = [];
     $oldData = [];
 
@@ -160,7 +177,7 @@ Route::get('/{region}/{version}/mob/{id}', function ($region, $version, $id) {
         'region' => $region,
         'version' => $version
     ]);
-});
+})->name('mob');
 
 Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
     $npcData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/npc/'. $id));
@@ -169,7 +186,7 @@ Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
         'region' => $region,
         'version' => $version
     ]);
-});
+})->name('npc');
 
 Route::get('/{region}/{version}/map/{id}', function ($region, $version, $id) {
     $mapData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/map/'. $id));
@@ -178,4 +195,4 @@ Route::get('/{region}/{version}/map/{id}', function ($region, $version, $id) {
         'region' => $region,
         'version' => $version
     ]);
-});
+})->name('map');
