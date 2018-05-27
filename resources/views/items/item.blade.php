@@ -85,7 +85,7 @@ table tr td:first-child {
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/items">Items</a></li>
+        <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/item/home">Items</a></li>
         <li class="breadcrumb-item active">{{ $item->description->name }}</li>
     </ol>
     <header class="primaryInfo">
