@@ -23,5 +23,8 @@
         "lodash": "^4.17.4",
         "isotope-layout": "^3.0.4",
         "vue": "^2.1.10"
+    },
+    "dependencies": {
+        "imagesloaded": "^4.1.4"
     }
 }
