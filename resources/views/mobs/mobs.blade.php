@@ -119,18 +119,18 @@ input[type="reset"], input[type="submit"] {
 @endsection
 
 @section('content')
-<form method='get' action='/{{$region}}/{{$version}}/mobs'>
+<form method='get' action='/{{$region}}/{{$version}}/monsters'>
     <div class="justify-content-between">
         <h2 class="mb-0">
-            Mobs
+            Monsters
             <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-language"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a href='/gms/latest/mobs' class="dropdown-item">English</a> 
-                <a href='/kms/latest/mobs' class="dropdown-item">한국어</a> 
-                <a href='/jms/latest/mobs' class='dropdown-item'>日本語</a> 
-                <a href='/cms/latest/mobs' class='dropdown-item'>中文</a>
+                <a href='/gms/latest/monsters' class="dropdown-item">English</a> 
+                <a href='/kms/latest/monsters' class="dropdown-item">한국어</a> 
+                <a href='/jms/latest/monsters' class='dropdown-item'>日本語</a> 
+                <a href='/cms/latest/monsters' class='dropdown-item'>中文</a>
             </div>
         </h2>
         <p class="lead">In the Maple World, there are dungeons to explore and new monsters to discover. View detailed statistics about every mob in addition to bosses via our wiki.</p>
@@ -149,7 +149,7 @@ input[type="reset"], input[type="submit"] {
                 <div class="card mb-1 mr-1">
                     <div class="card-body p-2" style="overflow:hidden;">
                         <a href='/{{$region}}/{{$version}}/mob/{{$mob->id}}'>
-                            <img src='https://maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/icon' />
+                            <img src='https://maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/icon' /><br/>
                             <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;width:100%;">{{ $mob->name }}</span><br/>
                         </a>
                     </div>
@@ -235,6 +235,18 @@ $(document).ready(function() {
             gutter: 0,
             columnWidth: '.size',
             }
+        });
+
+        var $grid = $('.mobs').imagesLoaded( function() {
+            // init Isotope after all images have loaded
+                var iso = new Isotope( '.mobs', {
+                itemSelector: '.mob', // use a separate class for itemSelector, other than .col-
+                layoutMode: 'masonry',
+                masonry: {
+                    gutter: 0,
+                    columnWidth: '.size',
+                }
+            });
         });
     </script>
 @endsection
