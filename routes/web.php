@@ -170,7 +170,7 @@ Route::get('/{region}/{version}/monsters', function (Request $request, $region, 
     ]);
 })->name('mobs');
 
-Route::get('/{region}/{version}/mob/{id}', function ($region, $version, $id) {
+Route::get('/{region}/{version}/monster/{id}', function ($region, $version, $id) {
     $mobData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob/'. $id));
     return view('mobs.mob', [
         'mob' => $mobData,
