@@ -105,7 +105,7 @@ Route::get('/{region}/{version}/items', function (Request $request, $region, $ve
     ]);
 })->name('items');
 
-Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
+Route::get('/{region}/{version}/item/{id}/{name?}', function ($region, $version, $id, $name = '') {
     $itemData = @file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/item/' . $id);
 
     if(!$itemData) {
@@ -113,6 +113,10 @@ Route::get('/{region}/{version}/item/{id}', function ($region, $version, $id) {
     }
 
     $itemData = json_decode($itemData);
+
+    if($name !== str_slug($itemData->description->name)) {
+        return redirect('/'.$region.'/'.$version.'/item/'.$id.'/'.str_slug($itemData->description->name).'/');
+    }
 
     return view('items.item', [
         'item' => $itemData,
@@ -170,8 +174,13 @@ Route::get('/{region}/{version}/monsters', function (Request $request, $region, 
     ]);
 })->name('mobs');
 
-Route::get('/{region}/{version}/monster/{id}', function ($region, $version, $id) {
+Route::get('/{region}/{version}/monster/{id}/{name?}', function ($region, $version, $id, $name = '') {
     $mobData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob/'. $id));
+
+    if($name !== str_slug($mobData->name)) {
+        return redirect('/'.$region.'/'.$version.'/monster/'.$id.'/'.str_slug($mobData->name).'/');
+    }
+
     return view('mobs.mob', [
         'mob' => $mobData,
         'region' => $region,
@@ -179,8 +188,13 @@ Route::get('/{region}/{version}/monster/{id}', function ($region, $version, $id)
     ]);
 })->name('mob');
 
-Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
+Route::get('/{region}/{version}/npc/{id}/{name?}', function ($region, $version, $id, $name = '') {
     $npcData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/npc/'. $id));
+
+    if($name !== str_slug($npcData->name)) {
+        return redirect('/'.$region.'/'.$version.'/npc/'.$id.'/'.str_slug($npcData->name).'/');
+    }
+    
     return view('npcs.npc', [
         'npc' => $npcData,
         'region' => $region,
@@ -188,8 +202,13 @@ Route::get('/{region}/{version}/npc/{id}', function ($region, $version, $id) {
     ]);
 })->name('npc');
 
-Route::get('/{region}/{version}/map/{id}', function ($region, $version, $id) {
+Route::get('/{region}/{version}/map/{id}/{name?}', function ($region, $version, $id, $name = '') {
     $mapData = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/map/'. $id));
+
+    if($name !== str_slug($mapData->name)) {
+        return redirect('/'.$region.'/'.$version.'/map/'.$id.'/'.str_slug($mapData->name).'/');
+    }
+
     return view('maps.map', [
         'map' => $mapData,
         'region' => $region,
