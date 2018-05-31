@@ -148,7 +148,7 @@ input[type="reset"], input[type="submit"] {
             <div class="mob col-md-6 col-lg-3 col-sm-12">
                 <div class="card mb-1 mr-1">
                     <div class="card-body p-2" style="overflow:hidden;">
-                        <a href='/{{$region}}/{{$version}}/monster/{{$mob->id}}'>
+                        <a href='/{{$region}}/{{$version}}/monster/{{$mob->id}}/{{ str_slug($mob->name) }}'>
                             <img src='https://maplestory.io/api/{{$region}}/{{$version}}/mob/{{$mob->id}}/icon' /><br/>
                             <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;width:100%;">{{ $mob->name }}</span><br/>
                         </a>
