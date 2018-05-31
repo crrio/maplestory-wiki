@@ -1,5 +1,6 @@
 <section class='equipInfo'>
     @if(isset($item->metaInfo->equip->reqSTR) || isset($item->metaInfo->equip->reqDEX) || isset($item->metaInfo->equip->reqINT) || isset($item->metaInfo->equip->reqLUK) || isset($item->metaInfo->equip->reqJob))
+        <p class="lead mb-0">
         <span class="badge badge-danger mr-1">Required:</span>
 
         @isset($item->metaInfo->equip->reqLevel)
@@ -35,7 +36,7 @@
                 @endisset
             </span>
         @endisset
-        <br/>
+        </p>
     @endif
 
     @isset($item->metaInfo->equip->tradeAvailable)
