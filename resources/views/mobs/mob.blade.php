@@ -40,163 +40,188 @@ table tr td:first-child {
 @section('content')
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/monsters/home">Mobs</a></li>
+    <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/monsters/home">Monsters</a></li>
     <li class="breadcrumb-item active">{{ $mob->name }}</li>
 </ol>
-<header class="primaryInfo">
-    <div class='itemName title'>
-            <img src='http://maplestory.io/api/gms/latest/mob/{{ $mob->id }}/icon?resize=3' style="max-width:250px;image-rendering: pixelated;margin:20px;float:right;display:block;z-index:1999;" class=" d-none d-lg-block"/>
-        <span class="name display-4">{{ $mob->name }}</span><br/>
-        @isset($mob->meta->level)
-            <span class="badge badge-primary font-weight-normal">Level {{$mob->meta->level}}</span>
-        @endisset
-        @isset($mob->meta->exp)
-            <span class="badge badge-success font-weight-normal">{{ number_format($mob->meta->exp) }} Exp</span>
-        @endisset
+<header class="primaryInfo mb-4">
+    <div class="row is-flex">
+        <div class="col-md-6">
+            <div class='itemName title'>
+                <span class="name display-4">
+                    {{ $mob->name }}<br/>
+                </span>
+                @isset($mob->meta->isBoss)
+                    @if($mob->meta->isBoss == 1)
+                        <span class="badge bg-dark text-white font-weight-normal">Boss</span>
+                    @endif
+                @endisset
+                @isset($mob->meta->level)
+                    <span class="badge bg-white border border-dark font-weight-normal">Level {{$mob->meta->level}}</span>
+                @endisset
+                @isset($mob->meta->exp)
+                    <span class="badge bg-white border border-dark font-weight-normal">{{ number_format($mob->meta->exp) }} Exp</span>
+                @endisset
+            </div>
+            <ul class="list-group mt-4">
+                @isset($mob->meta->maxHP)
+                    <li class="list-group-item d-flex justify-content-between align-items-center lead text-danger">
+                        Health
+                        <span class="badge badge-danger p-2">{{ number_format($mob->meta->maxHP) }}</span>
+                    </li>
+                @endisset
+                @isset($mob->meta->maxMP)
+                    <li class="list-group-item d-flex justify-content-between align-items-center lead text-primary">
+                        Mana
+                        <span class="badge badge-primary p-2">{{ number_format($mob->meta->maxMP) }}</span>
+                    </li>
+                @endisset
+                @isset($mob->meta->accuracy)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Accuracy
+                        <span>{{$mob->meta->accuracy}}</span>
+                    </li>
+                @endisset
+                @isset($mob->meta->evasion)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Evasion
+                        <span>{{$mob->meta->evasion}}</span>
+                    </li>
+                @endisset
+                @isset($mob->meta->speed)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Speed
+                        <span>{{$mob->meta->speed}}</span>
+                    </li>
+                @endisset
+                @isset($mob->meta->flySpeed)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Flying Speed
+                        <span>{{$mob->meta->flySpeed}}</span>
+                    </li>
+                @endisset
+            </ul>
+
+            <div class="card-deck mb-2 mt-4">
+                @isset($mob->meta->physicalDefense)
+                    <div class="card border border-primary text-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Physical</h5>
+                            <i class="fal fa-shield fa-fw"></i> {{ number_format($mob->meta->physicalDefense) }}</span> Defense<br/>
+                            @isset($mob->meta->physicalDamage)
+                                <p><i class="fal fa-feather fa-fw"></i> {{ number_format($mob->meta->physicalDamage) }} Attack</p>
+                            @endisset
+                            @isset($mob->meta->physicalDefenseRate)
+                                {{$mob->meta->physicalDefenseRate}}% Damage Resistance (PDR)
+                            @endisset
+                        </div>
+                    </div>
+                @endisset
+                @isset($mob->meta->magicDefense)
+                    <div class="card border border-success text-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Magic</h5>
+                            <i class="fal fa-shield fa-fw"></i> {{ number_format($mob->meta->magicDefense) }} Defense</span><br/>
+                            @isset($mob->meta->magicDamage)
+                                <p><i class="fal fa-feather fa-fw"></i> {{ number_format($mob->meta->magicDamage) }} Magic Attack</p>
+                            @endisset
+                            @isset($mob->meta->magicDefenseRate)
+                                {{$mob->meta->magicDefenseRate}}% Damage Resistance (MDR)
+                            @endisset
+                        </div>
+                    </div>
+                @endisset
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src='http://maplestory.io/api/gms/latest/mob/{{ $mob->id }}/icon?resize=5' style="margin:auto;max-width:100%;image-rendering: pixelated;" class=""/>
+        </div>
     </div>
 </header>
 
+@isset($mob->meta->elementalAttributes)
+<p class="lead">
+    @foreach(explode('-', trim(chunk_split(trim($mob->meta->elementalAttributes), 2, '-'), '-')) as $elemental)
+
+    @php
+        $elementalChar = substr($elemental, 0, 1);
+        $elementalName = $elemental;
+        switch($elementalChar) {
+            case 'H': $elementalName = 'Holy'; break;
+            case 'P': $elementalName = 'Poison'; break;
+            case 'F': $elementalName = 'Fire'; break;
+            case 'I': $elementalName = 'Ice'; break;
+            case 'L': $elementalName = 'Lightning'; break;
+            case 'D': $elementalName = 'Dark'; break;
+            case 'S': $elementalName = 'Physical'; break;
+        }
+
+        $elementalAttribute = substr($elemental, 1, 1);
+        switch($elementalAttribute) {
+            case '1': $elementalAttributeModifier = 'Immune'; break;
+            case '2': $elementalAttributeModifier = 'Strong'; break;
+            case '3': $elementalAttributeModifier = 'Weak'; break;
+            default: $elementalAttributeModifier = 'Neutral'; break;
+        }
+    @endphp
+
+    <span class="badge bg-white border border-primary text-primary font-weight-normal"><b>{{$elementalAttributeModifier}}</b> against <b>{{$elementalName}}</b></span>
+    @endforeach
+</p>
+@endisset
+
 <div class='mobInfo'>
-    <ul class="list-unstyled">
-        @isset($mob->meta->isBodyAttack)
-            <li><td>Can physical attack you</td><td>{{$mob->meta->isBodyAttack == 1 ? 'True' : 'False'}}</td></li>
-        @endisset
-        @isset($mob->meta->maxHp)
-            <li><td>Max HP</td><td>{{$mob->meta->maxHp}}</td></li>
-        @endisset
-        @isset($mob->meta->maxMp)
-            <li><td>Max MP</td><td>{{$mob->meta->maxMp}}</td></li>
-        @endisset
-        @isset($mob->meta->speed)
-            <li><td>Movement speed</td><td>{{$mob->meta->speed}}</td></li>
-        @endisset
-        @isset($mob->meta->flySpeed)
-            <li><td>Flying speed</td><td>{{$mob->meta->flySpeed}}</td></li>
-        @endisset
-        @isset($mob->meta->physicalDamage)
-            <li><td>Physical attack damage</td><td>{{$mob->meta->physicalDamage}}</td></li>
-        @endisset
-        @isset($mob->meta->physicalDefense)
-            <li><td>Physical defense</td><td>{{$mob->meta->physicalDefense}}</td></li>
-        @endisset
-        @isset($mob->meta->magicDamage)
-            <li><td>Magical Attack Damage</td><td>{{$mob->meta->magicDamage}}</td></li>
-        @endisset
-        @isset($mob->meta->magicDefense)
-            <li><td>Magical Attack Defense</td><td>{{$mob->meta->magicDefense}}</td></li>
-        @endisset
-        @isset($mob->meta->accuracy)
-            <li><td>Accuracy</td><td>{{$mob->meta->accuracy}}</td></li>
-        @endisset
-        @isset($mob->meta->evasion)
-            <li><td>Evasion</td><td>{{$mob->meta->evasion}}</td></li>
-        @endisset
+    <ul class="list-unstyled m-0">
+        <li class="font-weight-bold text-warning">Additional Information</li>
         @isset($mob->meta->isUndead)
-            <li><td>Is undead</td><td>{{$mob->meta->isUndead == 1 ? 'True' : 'False'}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Is undead: {{$mob->meta->isUndead == 1 ? 'True' : 'False'}}</span></li>
         @endisset
         @isset($mob->meta->minimumPushDamage)
-            <li><td>Min damage to knockback</td><td>{{$mob->meta->minimumPushDamage}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Min damage to knockback: {{ number_format($mob->meta->minimumPushDamage) }}</span></li>
         @endisset
         @isset($mob->meta->hpRecovery)
-            <li><td>HP recovered</td><td>{{$mob->meta->hpRecovery}}</td></li>
+            <li><span class="mr-2 font-weight-bold">HP recovered: {{ number_format($mob->meta->hpRecovery) }}</span></li>
         @endisset
         @isset($mob->meta->mpRecovery)
-            <li><td>MP recovered</td><td>{{$mob->meta->mpRecovery}}</td></li>
-        @endisset
-        @isset($mob->meta->elementalAttributes)
-            @foreach(explode('-', trim(chunk_split(trim($mob->meta->elementalAttributes), 2, '-'), '-')) as $elemental)
-
-            @php
-                $elementalChar = substr($elemental, 0, 1);
-                $elementalName = $elemental;
-                switch($elementalChar) {
-                    case 'H': $elementalName = 'Holy'; break;
-                    case 'P': $elementalName = 'Poison'; break;
-                    case 'F': $elementalName = 'Fire'; break;
-                    case 'I': $elementalName = 'Ice'; break;
-                    case 'L': $elementalName = 'Lightning'; break;
-                    case 'D': $elementalName = 'Dark'; break;
-                    case 'S': $elementalName = 'Physical'; break;
-                }
-
-                $elementalAttribute = substr($elemental, 1, 1);
-                switch($elementalAttribute) {
-                    case '1': $elementalAttributeModifier = 'Immune'; break;
-                    case '2': $elementalAttributeModifier = 'Strong'; break;
-                    case '3': $elementalAttributeModifier = 'Weak'; break;
-                    default: $elementalAttributeModifier = 'Neutral'; break;
-                }
-            @endphp
-
-            <li><td>
-                {{$elementalAttributeModifier}} against
-            </td><td>
-                {{$elementalName}}
-            </td></li>
-            @endforeach
-        @endisset
-        @isset($mob->meta->summonType)
-            <li><td>Summons other monsters</td><td>{{$mob->meta->summonType}}</td></li>
-        @endisset
-        @isset($mob->meta->hpTagColor)
-            <li><td>HP gauge Tag</td><td>{{$mob->meta->hpTagColor}}</td></li>
-        @endisset
-        @isset($mob->meta->hpTagBackgroundColor)
-            <li><td>HP gauge Tag background</td><td>{{$mob->meta->hpTagBackgroundColor}}</td></li>
-        @endisset
-        @isset($mob->meta->hpGaugeHide)
-            <li><td>HP gauge should be hidden</td><td>{{$mob->meta->hpGaugeHide}}</td></li>
+            <li><span class="mr-2 font-weight-bold">MP recovered: {{ number_format($mob->meta->mpRecovery) }}</span></li>
         @endisset
         @isset($mob->meta->noRespawn)
-            <li><td>Will respawn upon death</td><td>{{$mob->meta->noRespawn}}</td></li>
-        @endisset
-        @isset($mob->meta->revivesMonsterId)
-            <li><td>Spawn these mobs after death</td><td><ul>{!! implode(array_map(function ($mob) { return '<li><a href=\'/mob/'.$mob->id.'\'>'.$mob->name.'</a></li>'; }, $mob->meta->revivesMonsterId),'') !!}</ul></td></li>
+            <li><span class="mr-2 font-weight-bold">Will respawn upon death</span><span class="mr-2">{{$mob->meta->noRespawn}}</span></li>
         @endisset
         @isset($mob->meta->linksToOtherMob)
-            <li><td colspan='2'><a href='/{{$region}}/{{$version}}/mob/{{$mob->meta->linksToOtherMob}}'>Mimics other mob</a></td></li>
+            <li><td colspan='2'><a href='/{{$region}}/{{$version}}/monster/{{$mob->meta->linksToOtherMob}}/{{ str_slug($mob->name) }}'>Mimics other mob</a></span></li>
         @endisset
         @isset($mob->meta->onlyNormalAttack)
-            <li><td>Only normal attacks</td><td>{{$mob->meta->onlyNormalAttack}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Only normal attacks</span><span class="mr-2">{{$mob->meta->onlyNormalAttack}}</span></li>
         @endisset
         @isset($mob->meta->fixedDamageAmount)
-            <li><td>Damage per line</td><td>{{$mob->meta->fixedDamageAmount}}</td></li>
-        @endisset
-        @isset($mob->meta->isBoss)
-            <li><td>Is a boss</td><td>{{$mob->meta->isBoss == 1 ? 'True' : 'False'}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Damage per line</span><span class="mr-2">{{$mob->meta->fixedDamageAmount}}</span></li>
         @endisset
         @isset($mob->meta->isAutoAggro)
-            <li><td>Auto aggro</td><td>{{$mob->meta->isAutoAggro == 1 ? 'True' : 'False'}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Auto aggro: {{$mob->meta->isAutoAggro == 1 ? 'True' : 'False'}}</span></li>
         @endisset
         @isset($mob->meta->publicReward)
-            <li><td>Item drops are public</td><td>{{$mob->meta->publicReward}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Item drops are public</span><span class="mr-2">{{$mob->meta->publicReward}}</span></li>
         @endisset
         @isset($mob->meta->explosiveReward)
-            <li><td>Explosive drops</td><td>{{$mob->meta->explosiveReward}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Explosive drops</span><span class="mr-2">{{$mob->meta->explosiveReward}}</span></li>
         @endisset
         @isset($mob->meta->isInvincible)
-            <li><td>Is invincible</td><td>{{$mob->meta->isInvincible == 1 ? 'True' : 'False'}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Is invincible</span><span class="mr-2">{{$mob->meta->isInvincible == 1 ? 'True' : 'False'}}</span></li>
         @endisset
         @isset($mob->meta->noAttack)
-            <li><td>Monster can not attack you but you can attack it</td><td>{{$mob->meta->noAttack}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Monster can not attack you but you can attack it</span><span class="mr-2">{{$mob->meta->noAttack}}</span></li>
         @endisset
         @isset($mob->meta->removeAfterTime)
-            <li><td>Despawns after</td><td>{{$mob->meta->removeAfterTime}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Despawns after</span><span class="mr-2">{{$mob->meta->removeAfterTime}}</span></li>
         @endisset
         @isset($mob->meta->buffId)
-            <li><td>Buff given when killed</td><td>{{$mob->meta->buffId}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Buff given when killed</span><span class="mr-2">{{$mob->meta->buffId}}</span></li>
         @endisset
         @isset($mob->meta->hideName)
-            <li><td>Hides the name</td><td>{{$mob->meta->hideName}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Hides the name</span><span class="mr-2">{{$mob->meta->hideName}}</span></li>
         @endisset
         @isset($mob->meta->monsterBookId)
-            <li><td>Monster book ID</td><td>{{$mob->meta->monsterBookId}}</td></li>
-        @endisset
-        @isset($mob->meta->physicalDefenseRate)
-            <li><td>PDR</td><td>{{$mob->meta->physicalDefenseRate}}</td></li>
-        @endisset
-        @isset($mob->meta->magicDefenseRate)
-            <li><td>MDR</td><td>{{$mob->meta->magicDefenseRate}}</td></li>
+            <li><span class="mr-2 font-weight-bold">Monster book ID</span><span class="mr-2">{{$mob->meta->monsterBookId}}</span></li>
         @endisset
     </ul>
 </div>
