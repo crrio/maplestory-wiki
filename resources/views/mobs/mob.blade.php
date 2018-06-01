@@ -39,7 +39,7 @@ table tr td:first-child {
 
 @section('content')
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
     <li class="breadcrumb-item"><a href="/{{$region}}/{{$version}}/monsters/home">Monsters</a></li>
     <li class="breadcrumb-item active">{{ $mob->name }}</li>
 </ol>
