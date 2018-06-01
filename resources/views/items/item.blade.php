@@ -90,7 +90,7 @@ table tr td:first-child {
     </ol>
     <header class="primaryInfo">
     @isset($item->metaInfo->icon)
-        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' style="width:200px;image-rendering: pixelated;margin:20px;float:right;display:block;z-index:1999;"/>
+        <img src='data:image/png;base64,{{ $item->metaInfo->icon->icon }}' class="pixels" style="width:200px;margin:20px;float:right;display:block;z-index:1999;"/>
     @endisset
         <div class='itemName title'>
             <span class="name display-4">{{ $item->description->name }}</span><br/>

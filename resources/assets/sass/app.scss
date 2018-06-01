@@ -334,3 +334,8 @@ header .nav-item:hover, .navbar-brand:hover {
   -ms-flex-direction: column;
   flex-direction: column;
 }
+
+.pixels {
+  image-rendering: pixelated;
+  -moz-image-rendering: crisp-edges;
+}

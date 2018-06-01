@@ -133,7 +133,7 @@ table tr td:first-child {
             </div>
         </div>
         <div class="col-md-6">
-            <img src='http://maplestory.io/api/gms/latest/mob/{{ $mob->id }}/icon?resize=5' style="margin:auto;max-width:100%;image-rendering: pixelated;" class=""/>
+            <img src='http://maplestory.io/api/gms/latest/mob/{{ $mob->id }}/icon?resize=5' style="margin:auto;max-width:100%;" class="pixels"/>
         </div>
     </div>
 </header>
