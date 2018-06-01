@@ -338,4 +338,5 @@ header .nav-item:hover, .navbar-brand:hover {
 .pixels {
   image-rendering: pixelated;
   -moz-image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
 }
