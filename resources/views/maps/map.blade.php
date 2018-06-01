@@ -117,7 +117,7 @@ section {
         <b>Has {{count($map->mobs)}} Mob spawn points</b>
         <ul>
             @foreach($map->mobs as $mob)
-                <li><a href='/{{$region}}/{{$version}}/mob/{{$mob->id}}/{{ str_slug($mob->name) }}'>{{$mob->name}}</a> at ({{$mob->x}}, {{$mob->y}})</li>
+                <li><a href='/{{$region}}/{{$version}}/monster/{{$mob->id}}/{{ str_slug($mob->name) }}'>{{$mob->name}}</a> at ({{$mob->x}}, {{$mob->y}})</li>
             @endforeach
         </ul>
     </section>
