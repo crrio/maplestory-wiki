@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title')
-    {{$mob->name}}
-@endsection
+@section('title', $mob->name)
+@section('desc', 'Discover information, statistics, and much more about the monster '.$mob->name.'.')
+@section('image', 'http://maplestory.io/api/gms/latest/mob/'.$mob->id.'/icon?resize=5')
 
 @section('css')
 <style>
