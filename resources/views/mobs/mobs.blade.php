@@ -140,7 +140,7 @@ input[type="reset"], input[type="submit"] {
 <section>
     <ul>
         @empty($mobs)
-            <li>No items could be found :(</li>
+            <li>No monsters could be found :(</li>
         @else
         <div class="mobs row">
             <div class="size col-md-6 col-lg-3 col-sm-12 d-none"></div>
