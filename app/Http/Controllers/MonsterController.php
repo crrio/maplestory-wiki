@@ -24,11 +24,6 @@ class MonsterController extends Controller
             $query[] = 'startPosition=' . urlencode($position);
             $oldData['position'] = $position;
         }
-        $count = $request->query('count') ?? '50';
-        if (isset($count)) {
-            $query[] = 'count=' . urlencode($count);
-            $oldData['count'] = $count;
-        }
         $minLevel = $request->query('minLevel');
         if (isset($minLevel)) {
             $query[] = 'minLevelFilter=' . urlencode($minLevel);
@@ -45,15 +40,28 @@ class MonsterController extends Controller
             $oldData['search'] = $search;
         }
     
+        // Calculate the total amount of monsters for this filter (excluding count)
         $queryJoined = implode('&', $query);
-    
+        $mobListTotal = count(json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob?' . $queryJoined)));
+
+        // Now let's add count in to get our actual filtered request.
+        $count = $request->query('count') ?? '50';
+        if (isset($count)) {
+            $query[] = 'count=' . urlencode($count);
+            $oldData['count'] = $count;
+        }
+        $queryJoined = implode('&', $query);
         $mobList = json_decode(file_get_contents(getenv('API_URL') . '/api/' . $region . '/' . $version . '/mob?' . $queryJoined));
     
         return view('mobs.mobs', [
             'mobs' => $mobList,
+            'mobsCount' => $mobListTotal, 
             'oldQuery' => $oldData,
             'region' => $region,
-            'version' => $version
+            'version' => $version,
+            'count' => $count,
+            'minLevel' => $minLevel,
+            'maxLevel' => $maxLevel
         ]);
     }
 
