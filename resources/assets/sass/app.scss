@@ -340,3 +340,14 @@ header .nav-item:hover, .navbar-brand:hover {
   -moz-image-rendering: crisp-edges;
   image-rendering: -moz-crisp-edges;
 }
+
+.smart {
+  color:#488AC7 !important;
+  border-bottom: 2px solid rgba(72,138,199,0.3);
+  white-space: nowrap;
+}
+
+.bg-level {
+  background: #488AC7;
+  color: #FFF;
+}
