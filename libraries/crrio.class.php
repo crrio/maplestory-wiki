@@ -42,5 +42,9 @@ class Crrio
         
         return 'background:url("'.$bg['bg'].'") scroll '.$bg['start'].' no-repeat !important; background-size:cover !important;';
     }
+
+    public static function smart($id) {
+        return('<a class="smart" maple-id="'.$id.'"></a>');
+    }
 }
 ?>
