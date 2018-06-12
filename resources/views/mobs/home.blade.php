@@ -163,38 +163,55 @@ input[type="reset"], input[type="submit"] {
             </div>
         </div>
     </div>
-    <div class="list-group mt-4">
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=1&maxLevel=10" class="list-group-item list-group-item-action">
-            Level 1 - 10
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=11&maxLevel=20" class="list-group-item list-group-item-action">
-            Level 11 - 20
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=21&maxLevel=30" class="list-group-item list-group-item-action">
-            Level 21 - 30
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=31&maxLevel=40" class="list-group-item list-group-item-action">
-            Level 31 - 40
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=41&maxLevel=50" class="list-group-item list-group-item-action">
-            Level 41 - 50
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=51&maxLevel=70" class="list-group-item list-group-item-action">
-            Level 51 - 70
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=71&maxLevel=99" class="list-group-item list-group-item-action">
-            Level 71 - 99
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=100&maxLevel=120" class="list-group-item list-group-item-action">
-            Level 100 - 120
-        </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=121&maxLevel=140" class="list-group-item list-group-item-action">
+    <h4 class="lead mt-3">View Monsters by Level</h4>
+    <div class="card-deck mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-2"><a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=1&maxLevel=10">Level 1 - 10</a></h5>
+                <p class="card-text">{!! Crrio::smart('100004') !!}, {!! Crrio::smart('100006') !!}, {!! Crrio::smart('1210101') !!}, and more.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-2"><a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=11&maxLevel=30">Level 11 - 30</a></h5>
+                <p class="card-text">{!! Crrio::smart('5130101') !!}, {!! Crrio::smart('3230300') !!}, {!! Crrio::smart('3230100') !!}, and more.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-2"><a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=31&maxLevel=50">Level 31 - 50</a></h5>
+                <p class="card-text">{!! Crrio::smart('3401000') !!}, {!! Crrio::smart('2130103') !!}, and more.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-2"><a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=51&maxLevel=70">Level 51 - 70</a></h5>
+                <p class="card-text">{!! Crrio::smart('2230102') !!}, {!! Crrio::smart('4130100') !!}, and more.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-2"><a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=71&maxLevel=100">Level 71 - 100</a></h5>
+                <p class="card-text">{!! Crrio::smart('5140000') !!}, {!! Crrio::smart('2110301') !!}, {!! Crrio::smart('5110301', false) !!} and more.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-2"><a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=101&maxLevel=120">Level 101 - 120</a></h5>
+                <p class="card-text">{!! Crrio::smart('7130500') !!}, {!! Crrio::smart('4230112') !!}, and more.</p>
+            </div>
+        </div>
+    </div>
+    <div class="list-group mt-2 d-none">
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=250&minLevel=121&maxLevel=140" class="list-group-item list-group-item-action">
             Level 121 - 140
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=141&maxLevel=160" class="list-group-item list-group-item-action">
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=250&minLevel=141&maxLevel=160" class="list-group-item list-group-item-action">
             Level 141 - 160
         </a>
-        <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=161&maxLevel=199" class="list-group-item list-group-item-action">
+        <a href="/{{$region}}/{{$version}}/monsters?search=&count=250&minLevel=161&maxLevel=199" class="list-group-item list-group-item-action">
             Level 161 - 199
         </a>
         <a href="/{{$region}}/{{$version}}/monsters?search=&count=100&minLevel=200" class="list-group-item list-group-item-action">
@@ -210,6 +227,10 @@ input[type="reset"], input[type="submit"] {
 
 @section('js')
 <script>
+$('.smart').mapleTooltip({
+    region: "gms"
+});
+
 /**
  * jQuery Unveil
  * A very lightweight jQuery plugin to lazy load images

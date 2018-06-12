@@ -11,7 +11,7 @@
         var settings = $.extend({
             type: "monster",
             region: "gms",
-            version: "latest"
+            version: "latest",
         }, options);
 
         return this.each(function() {
@@ -26,13 +26,10 @@
             // Define the API (Maplestory.io)
             var api = "https://maplestory.io/api/" + region + "/" + version + "/mob/" + id;
 
-            // Update the element
-            $(i).attr('href', 'https://maplestory.wiki/' + region + '/' + version + '/monster/' + id);
-
             $.get( api, function(data) {
 
-                // Now that we have the item name, add it to the DOM.
-                $(i).html(data.name);
+                // Define elements that can be replaced with newly received information.
+                $(i).children('#name').html(data.name);
 
                 // Initialize tooltip blocks
                 var hp = '';
